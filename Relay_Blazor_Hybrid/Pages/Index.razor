@@ -1,0 +1,141 @@
+﻿@page "/"
+
+      <MudAppBar Elevation="0" Dense="true" Style="background-color:ghostwhite;padding-top:8px">
+
+                <div style="padding:8px;margin:8px;margin-top:16px">
+                    <input  @bind:event="oninput" class="form-control border-0" id="myInput" style="background-color:lightgray;color:black;border-radius:30px;font-family:'Century Gothic'" required placeholder="Search" />
+
+                </div>
+                <MudSpacer />
+                <MudIconButton Style="margin-right:8px" Icon="@Icons.Material.Filled.Search" Color="Color.Dark" Edge="Edge.End" />
+                <MudIconButton  Icon="@Icons.Material.Outlined.ShoppingCart" Color="Color.Dark" Edge="Edge.Start" />
+                @*<MudIconButton Icon="@Icons.Material.TwoTone.MoreVert" Color="Color.Dark" Edge="Edge.Start" />*@
+            </MudAppBar>
+
+<div class="container-fluid" style="margin-bottom:80px;padding-bottom:10px">
+    <MudCarousel  Class="mud-width-full" Style="height:150px;border-radius:8px" ShowArrows="false" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" TData="object">
+        <MudCarouselItem Transition="Transition.Slide" Color="@Color.Primary">
+            <div class="d-flex" style="height:100%">
+                <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+            </div>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide" Color="@Color.Secondary">
+            <div class="d-flex" style="height:100%">
+                <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+            </div>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide" Color="@Color.Warning">
+            <div class="d-flex" style="height:100%">
+                <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Color="@Color.Primary" Size="@Size.Large" />
+            </div>
+        </MudCarouselItem>
+    </MudCarousel>
+
+    <MudGrid Style="margin-top:8px">
+    <MudItem xs="6">
+       <MudText  Typo="Typo.body1">
+                <strong>Categories</strong>
+       </MudText>
+    </MudItem>
+    <MudItem xs="6">
+       <div style="text-align:end;color:cornflowerblue;margin-right:8px">
+           See all
+       </div>
+    </MudItem>
+    </MudGrid>
+
+  
+
+    <style>
+        .hide-scrollbar {
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none; /* For Firefox */
+        }
+
+            .hide-scrollbar::-webkit-scrollbar {
+                display: none; /* For Chrome, Safari, Edge, and WebView */
+            }
+    </style>
+    <div style="overflow-x: auto; white-space: nowrap;" class="hide-scrollbar">
+    @for (var i = 0; i < 10; i++)
+    {
+        <MudChip T="string" Style="margin-right:8px" Variant="Variant.Text">Default</MudChip>
+    }
+    </div>
+
+    <MudGrid Style="margin-top:8px">
+        <MudItem xs="6">
+            <MudText Typo="Typo.body1">
+                <strong>Recomendations</strong>
+            </MudText>
+        </MudItem>
+        <MudItem xs="6">
+            <div style="text-align:end;color:cornflowerblue;margin-right:8px">
+                See all
+            </div>
+        </MudItem>
+    </MudGrid>
+
+
+     <MudGrid Style="margin-top:8px">
+         @for (var i = 0; i < 10; i++)
+         {
+            <MudItem xs="6">
+                <MudCard @onclick="@(()=>naviagte.NavigateTo("/ProductDetails"))" Style="height:200px;border-radius:14px" Elevation="25">
+                    @* <MudCardHeader>
+                <CardHeaderAvatar>
+                <MudAvatar Size="Size.Small" Color="Color.Secondary">I</MudAvatar>
+                </CardHeaderAvatar>
+                <CardHeaderContent>
+                <MudText Typo="Typo.body1">Coisa Computers</MudText>
+                <MudText Typo="Typo.body2" Style="color:gray">Electronics.Kericho.Kenya</MudText>
+                </CardHeaderContent>
+
+                </MudCardHeader>*@
+                    <MudCardMedia Image="https://png.pngtree.com/png-vector/20230501/ourmid/pngtree-sneakers-running-shoes-trendy-shoe-shapes-png-image_7078175.png" Height="100" />
+
+                    <MudCardContent>
+
+
+                        <MudText Typo="Typo.h6">KES 1,200</MudText>
+                        <MudText Typo="Typo.body2" Style="color:gray">Nike Lebron 8</MudText>
+
+                        <div style="text-align:end">
+                            <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Dark" />
+                        </div>
+                    </MudCardContent>
+
+                </MudCard>
+            </MudItem>
+        }
+       
+       
+    </MudGrid>
+
+
+  
+
+
+</div>
+
+
+<MudAppBar Bottom="true" Fixed="true" Style="background-color:white" Elevation="1">
+
+
+    <MudIconButton Icon="@Icons.Material.Rounded.RssFeed" Color="Color.Warning" Edge="Edge.End" />
+
+
+    <MudSpacer />
+    <MudIconButton Icon="@Icons.Material.Filled.FavoriteBorder" Color="Color.Warning" Edge="Edge.Start" />
+
+    <MudSpacer />
+    <MudFab Style="background-color:white" IconColor="Color.Warning" StartIcon="@Icons.Material.Rounded.Home" Size="Size.Medium" />
+
+    <MudSpacer />
+    <MudIconButton Icon="@Icons.Material.Rounded.ConnectWithoutContact" Color="Color.Warning" Edge="Edge.End" />
+
+    <MudSpacer />
+    <MudIconButton Icon="@Icons.Material.Filled.NotificationsNone" Color="Color.Warning" Edge="Edge.End" />
+
+</MudAppBar>

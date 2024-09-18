@@ -1,0 +1,153 @@
+﻿@inherits LayoutComponentBase
+@inject Relay_Blazor_Hybrid.Utils.ScreenSizeService ScreenSizeService
+<PageTitle>Relay</PageTitle>
+
+<div class="page">
+
+
+    <main>
+        <MudThemeProvider />
+        <MudDialogProvider />
+        <MudSnackbarProvider />
+
+        <MudLayout>
+      
+               
+                
+
+         
+          <MudMainContent Class="pt-12 px-0">
+                <CascadingValue Value="this">
+                    <CascadingValue Value="deviceCategory">
+                        <body style="background-color:ghostwhite;font-family:Calibri" class="content px-0">
+                            @Body
+                        </body>
+                    </CascadingValue>
+                </CascadingValue>
+            </MudMainContent>
+        </MudLayout>
+
+
+
+    </main>
+</div>
+
+
+
+
+
+
+<MudMessageBox @ref="mbox" Title="Warning!!." CancelText="Cancel ">
+
+    <MessageContent>
+        <MudAlert Severity="Severity.Error">
+            You are about to log out. Would you like to continue?
+        </MudAlert>
+
+    </MessageContent>
+    <YesButton>
+        <MudButton Variant="Variant.Filled" Class="text-capitalize" Color="Color.Error" EndIcon="@Icons.Material.Outlined.Logout"> Log Out!</MudButton>
+    </YesButton>
+</MudMessageBox>
+
+
+
+@code {
+    bool open = true;
+    string avaterstyle = "";
+    string Smallavaterstyle = "";
+    string name = "n/a";
+    string FirstLeter = "";
+    string email = "n/a";
+    string color = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        //name = await unitOfWork.Get_LoggedIn_User.UserFullName();
+        //FirstLeter = unitOfWork.icolorCodes.GetFirstLetter(name);
+        //email = await unitOfWork.Get_LoggedIn_User.UserEmail();
+        //color = unitOfWork.icolorCodes.GetColorCode_string();
+        avaterstyle = $"background-color:{color}; height:70px; width:70px; font-size:2rem;color:white";
+
+        Smallavaterstyle = $"background-color:{color};border:solid 1px white;color:white";
+    }
+    bool preserveOpenState = false;
+    Breakpoint breakpoint = Breakpoint.Lg;
+    DrawerClipMode clipMode = DrawerClipMode.Never;
+
+    void ToggleDrawer()
+    {
+        open = !open;
+    }
+
+
+
+
+    MudMessageBox mbox { get; set; }
+    public async Task LogOut()
+    {
+        bool? result = await mbox.Show();
+        if (result != null)
+        {
+            //  unitOfWork.Get_LoggedIn_User.LogOut();
+            naviagte.NavigateTo("/", true);
+        }
+        StateHasChanged();
+    }
+
+}
+<MudOverlay @bind-Visible="visible" LightBackground="true" AutoClose="false" ZIndex="9999">
+
+    <MudCard Elevation="0">
+        <MudCardActions>
+            <MudProgressCircular Color="Color.Warning" Indeterminate="true" />
+            <MudText Typo="Typo.h6" Color="Color.Warning" Style="margin-left:24px">Loading...</MudText>
+        </MudCardActions>
+    </MudCard>
+</MudOverlay>
+
+    @code {
+    private bool visible;
+
+    public void OpenLoading()
+    {
+        visible = true;
+        StateHasChanged();
+    }
+    public void CloseLoading()
+    {
+        visible = false;
+        StateHasChanged();
+    }
+    }
+
+
+
+@code {
+    public string deviceCategory;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+
+            deviceCategory = await ScreenSizeService.GetDeviceCategoryAsync();
+            ScreenSizeService.OnResize += HandleResize;
+
+            await ScreenSizeService.RegisterResizeHandlerAsync();
+
+            StateHasChanged(); // Trigger a re-render to update the UI
+        }
+    }
+
+    private void HandleResize(string newCategory)
+    {
+        deviceCategory = newCategory;
+        InvokeAsync(StateHasChanged); // Update the UI when screen size changes
+    }
+
+    public void Dispose()
+    {
+        ScreenSizeService.OnResize -= HandleResize;
+    }
+}
