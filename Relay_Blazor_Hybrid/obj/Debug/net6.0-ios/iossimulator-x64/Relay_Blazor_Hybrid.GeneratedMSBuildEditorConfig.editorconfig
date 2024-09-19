@@ -71,6 +71,13 @@ build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/Manage_Businesses.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlX0J1c2luZXNzZXMucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/Notification.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
@@ -85,10 +92,24 @@ build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdERldGFpbHMucmF6b3I=
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/Settings.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ3MucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/Wishlist.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2lzaGxpc3QucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Shared/bottomnavigation/Bottom-Main_App_Bar.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXGJvdHRvbW5hdmlnYXRpb25cQm90dG9tLU1haW5fQXBwX0Jhci5yYXpvcg==
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = 
 

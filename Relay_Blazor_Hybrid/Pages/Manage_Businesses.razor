@@ -1,0 +1,145 @@
+﻿@page "/Manage_Businesses"
+@layout MainLayout
+<meta name="theme-color" content="darkorange" />
+
+<body style="background-color:darkorange;height:100%;padding-top:8px">
+    
+<MudAppBar Elevation="0" Dense="true" Style="background-color:darkorange;padding-top:8px;color:white" >
+
+    <MudIconButton  OnClick="@(()=>naviagte.NavigateTo("/"))" Style="margin-right:8px;color:white" Icon="@Icons.Material.Rounded.KeyboardBackspace"  Edge="Edge.End" />
+
+    <MudText Typo="Typo.h6" Style="color:white">
+        My Businesses
+    </MudText>
+    <MudSpacer />
+
+
+
+</MudAppBar>
+ <div style="margin:24px">
+        <input @bind="TextValue" @bind:event="oninput" class="form-control border-0" id="myInput" style="background-color:#D0CFD6;color:black;border-radius:20px;font-family:'Century Gothic';padding:8px" required placeholder="Search" />
+
+    </div>
+
+
+
+    <div style="background-color:white;border-top-left-radius:30px;border-top-right-radius:30px;height:100%;padding-top:8px">
+
+<div class="container-fluid">
+
+
+            <MudText Style="color:gray;padding:8px" Typo="Typo.body2">Click to switch to business </MudText>
+
+
+    @for (var i = 0; i < 5; i++)
+    {
+        <MudPaper Elevation="25" Style=";padding:8px;border-radius:16px;margin-top:8px">
+            <div class="horizontal-container">
+                <MudImage Src="Images/coisalogo.jpg" Height="40" Width="40" Alt="kili" Class="rounded-lg ma-1  " />
+                <div style="width:100%;">
+
+                      <div class="horizontal-container">
+                  <div>
+                            <MudText Style="color:gray" Typo="Typo.h6">Coisa Computers </MudText>
+                            <MudText Typo="Typo.body2" Style="color:gray">Wholesale </MudText>
+                        </div>
+                      <MudSpacer/>
+                        <MudMenu Icon="@Icons.Material.TwoTone.MoreVert" Dense="true">
+                        <MudMenuItem IconSize="Size.Small" IconColor="Color.Default" Icon="@Icons.Material.Filled.Edit">Edit</MudMenuItem>
+                        <MudMenuItem IconSize="Size.Small" IconColor="Color.Error" Icon="@Icons.Material.Filled.Delete">Remove</MudMenuItem>
+                          
+                    </MudMenu>
+                    </div>
+                  
+                       
+                    
+                   
+                </div>
+            </div>
+
+        </MudPaper>
+    }
+
+
+    <style>
+        .horizontal-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+    </style>
+
+
+
+</div>
+
+</div>
+<MudDrawer Open="@_open" Anchor="Anchor.Bottom" Elevation="1" Style="border-top-left-radius:30px;border-top-right-radius:30px" Variant="@DrawerVariant.Temporary">
+    <MudDrawerHeader>
+
+   <div>
+            <MudText Typo="Typo.h6"><strong>The Story Book</strong> </MudText>
+            <MudText Typo="Typo.body1" Style="color:gray">Register new business</MudText>
+   </div>
+            
+        <MudSpacer />
+        <MudIconButton OnClick="CloseBottomsheet" Icon="@Icons.Material.Filled.Close" Color="Color.Default" />
+     
+        
+    </MudDrawerHeader>
+<div class="container-fluid">
+    
+    <div style="text-align:center">
+        <MudAvatar Style="height:70px; width:70px; font-size:2rem;" Color="Color.Primary">A</MudAvatar>
+
+</div>
+      <MudText Typo="Typo.body1" Style="font-size:small;color:gray;margin-top:8px">
+        Name
+    </MudText>
+    <MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6" Placeholder="Name" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+    
+      <MudText Typo="Typo.body1" Style="font-size:small;color:gray;margin-top:8px">
+        Business Type
+    </MudText>
+    <MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6" Placeholder="Retailer" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+    
+      <MudText Typo="Typo.body1" Style="font-size:small;color:gray;margin-top:8px">
+        Business Category
+    </MudText>
+    <MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6" Placeholder="Gaming" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+
+
+       <div style="padding:8px;text-align:center;margin:8px">
+            <MudFab Size="Size.Small" StartIcon="@Icons.Material.Filled.Add" Color="Color.Warning" Label="Register new Business" />
+       </div>
+
+</div>
+</MudDrawer>
+
+
+            <MudAppBar Bottom="true" Fixed="true" Style="background-color:transparent;margin-bottom:60px" Elevation="0">
+               
+                <MudSpacer />
+                <div style="text-align:center" >
+        <MudFab Color="Color.Dark" StartIcon="@Icons.Material.Filled.Add" OnClick="openBottomsheet" Size="Size.Medium" />
+
+                </div>
+            </MudAppBar>
+
+
+             <Relay_Blazor_Hybrid.Shared.bottomnavigation.Bottom_Main_App_Bar/>
+
+</body>
+@code {
+    string TextValue{ get; set; }
+    private bool _open;
+   
+
+    void openBottomsheet(){
+        _open = true;
+    }
+    void CloseBottomsheet(){
+        _open = false;
+    }
+}
