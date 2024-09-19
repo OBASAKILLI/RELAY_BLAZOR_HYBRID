@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fEc/AZs+8AicffOoGEW1r/vsmQwqwAL/1feFk0nZwyA=",
+  "Hash": "8JpfhSUP6lJ6eaXC9bEit09dKxrzrIv4A6P20KtG8gY=",
   "Source": "Relay_Blazor_Hybrid",
   "BasePath": "/",
   "Mode": "Root",
@@ -338,6 +338,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\coisalogo.jpg"
+    },
+    {
+      "Identity": "D:\\PROJECTS\\Relay_Blazor_Hybrid\\Relay_Blazor_Hybrid\\wwwroot\\Images\\facebook.png",
+      "SourceId": "Relay_Blazor_Hybrid",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PROJECTS\\Relay_Blazor_Hybrid\\Relay_Blazor_Hybrid\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "Images/facebook.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\facebook.png"
+    },
+    {
+      "Identity": "D:\\PROJECTS\\Relay_Blazor_Hybrid\\Relay_Blazor_Hybrid\\wwwroot\\Images\\search.png",
+      "SourceId": "Relay_Blazor_Hybrid",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PROJECTS\\Relay_Blazor_Hybrid\\Relay_Blazor_Hybrid\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "Images/search.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\search.png"
     },
     {
       "Identity": "D:\\PROJECTS\\Relay_Blazor_Hybrid\\Relay_Blazor_Hybrid\\wwwroot\\index.html",

@@ -1,0 +1,68 @@
+﻿@page "/Wishlist"
+@layout MainLayout
+
+<MudAppBar Elevation="0" Dense="true" Style="background-color:ghostwhite;padding-top:8px">
+
+    <MudIconButton OnClick="@(()=>naviagte.NavigateTo("/"))" Style="margin-right:8px" Icon="@Icons.Material.Rounded.KeyboardBackspace" Color="Color.Dark" Edge="Edge.End" />
+
+    <MudText Typo="Typo.h6" Color="Color.Dark">
+        Wishlist
+    </MudText>
+    <MudSpacer />
+
+    <Relay_Blazor_Hybrid.Shared.notifications.Wishlistnotification />
+    <Relay_Blazor_Hybrid.Shared.notifications.Menu />
+
+</MudAppBar>
+
+
+<div class="container-fluid">
+    <div style="margin-left:16px;margin-right:16px">
+        <MudTextField Placeholder="Search" Margin="Margin.Dense" T="string" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" Class="rounded-pill" />
+
+    </div>
+
+    @for (var i = 0; i < 5; i++)
+    {
+        <MudPaper Elevation="25" Style=";padding:8px;border-radius:16px;margin-top:8px">
+            <div class="horizontal-container">
+                <MudImage Src="Images/coisalogo.jpg" Height="60" Width="60" Alt="kili" Class="rounded-lg ma-1  " />
+                <div style="width:100%;">
+                    <MudText Typo="Typo.h6"><strong style="color:gray">Nike Lebron 8</strong> </MudText>
+                    <MudText Typo="Typo.body2" Style="color:gray">Some Descriptions here</MudText>
+
+
+                    <MudGrid>
+                        <MudItem xs="6">
+                            <MudText Typo="Typo.body1"><strong>KES 1,200</strong> </MudText>
+                        </MudItem>
+                        <MudItem xs="6" Style="text-align:end;">
+                            <MudIconButton Icon="@Icons.Material.Filled.Delete" Size="Size.Medium" Color="Color.Error" />
+
+                        </MudItem>
+                    </MudGrid>
+                </div>
+            </div>
+
+        </MudPaper>
+    }
+  
+
+    <style>
+        .horizontal-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+
+    </style>
+
+
+
+</div>
+
+
+@code {
+
+}

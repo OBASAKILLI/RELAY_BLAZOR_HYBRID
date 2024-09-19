@@ -1,0 +1,20 @@
+﻿@page "/Feeds"
+@layout MainLayout
+
+<MudAppBar Elevation="0" Dense="true" Style="background-color:ghostwhite;padding-top:8px">
+
+    <MudIconButton OnClick="@(()=>naviagte.NavigateTo("/"))" Style="margin-right:8px" Icon="@Icons.Material.Rounded.KeyboardBackspace" Color="Color.Dark" Edge="Edge.End" />
+
+    <MudText Typo="Typo.h6" Color="Color.Dark">
+        Feeds
+    </MudText>
+    <MudSpacer />
+
+    <Relay_Blazor_Hybrid.Shared.notifications.Wishlistnotification />
+    <Relay_Blazor_Hybrid.Shared.notifications.Menu />
+</MudAppBar>
+<h3>Feeds</h3>
+
+@code {
+
+}

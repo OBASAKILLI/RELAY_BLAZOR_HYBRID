@@ -1,0 +1,99 @@
+﻿@page "/Login"
+@layout MainLayout
+
+<MudAppBar Elevation="0" Dense="true" Style="background-color:ghostwhite;padding-top:8px">
+
+    <MudIconButton OnClick="@(()=>naviagte.NavigateTo("/"))" Style="margin-right:8px" Icon="@Icons.Material.Rounded.KeyboardBackspace" Color="Color.Dark" Edge="Edge.End" />
+
+
+    <MudSpacer />
+
+    <Relay_Blazor_Hybrid.Shared.notifications.Wishlistnotification />
+
+</MudAppBar>
+
+<div class="container-fluid">
+
+
+
+    <div style="text-align:center">
+        <MudText Typo="Typo.h4">
+            Sign In
+        </MudText>
+        <MudText Typo="Typo.body1" Style="font-size:small;color:gray;margin-top:8px">
+            Hi,Welcome back, You've been missed.
+        </MudText>
+    </div>
+
+
+    <MudText Typo="Typo.body1" Style="font-size:small;color:gray;margin-top:8px">
+        Email
+    </MudText>
+    <MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6" Placeholder="example@gmail.com" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+
+
+    <MudText Typo="Typo.body1" Style="font-size:small;color:gray;margin-top:8px">
+        Password
+    </MudText>
+    <MudTextField @bind-Value="TextValue" Placeholder="********" Style="background-color:#F6F6F6" Margin="Margin.Dense" Variant="Variant.Outlined" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick" AdornmentAriaLabel="Show Password"></MudTextField>
+
+    <div style="text-align:end;color:cornflowerblue;margin:8px">
+        <u>Forgot Password?</u>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;margin-bottom:24px">
+        <MudFab Label="Sign In" Style="width:90%;background-color:orange;color:white;font-size:large" />
+    </div>
+    <MudGrid>
+        <MudItem xs="4">
+            <MudDivider Style="height:1.5px;margin-top:12px" />
+        </MudItem>
+        <MudItem xs="4" Style="text-align:center;color:gray">
+            Or sign in with
+        </MudItem>
+        <MudItem xs="4" Style="text-align:end;">
+            <MudDivider Style="height:1.5px;margin-top:12px" />
+        </MudItem>
+    </MudGrid>
+    <div style="text-align:center;margin-top:24px;margin-bottom:24px">
+        <MudAvatar Color="Color.Warning" Variant="Variant.Outlined" Class="p-2 m-2" Size="Size.Large">
+            <MudImage Src="Images/search.png"></MudImage>
+        </MudAvatar>
+        <MudAvatar Color="Color.Primary" Variant="Variant.Outlined" Class="p-2 m-2" Size="Size.Large">
+            <MudImage Src="Images/facebook.png"></MudImage>
+        </MudAvatar>
+        <MudAvatar Color="Color.Success" Variant="Variant.Outlined" Class="m-2" Size="Size.Large">
+            <MudIcon Size="Size.Medium" Icon="@Icons.Material.Filled.LocalPhone" />
+        </MudAvatar>
+    </div>
+    <div style="text-align:center;margin:8px">
+        Don't have an account? <span><a href="/CreateAccount"><u style="color:cornflowerblue">Sign Up</u> </a> </span>
+    </div>
+
+
+
+
+</div>
+@code {
+    public string TextValue { get; set; }
+    InputType PasswordInput = InputType.Password;
+    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+
+    bool isShow;
+    void ButtonTestclick()
+    {
+        if (isShow)
+        {
+            isShow = false;
+            PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+            PasswordInput = InputType.Password;
+        }
+        else
+        {
+            isShow = true;
+            PasswordInputIcon = Icons.Material.Filled.Visibility;
+            PasswordInput = InputType.Text;
+        }
+    }
+}

@@ -1,16 +1,7 @@
 ﻿@page "/"
+@layout UserHomePage
+   
 
-      <MudAppBar Elevation="0" Dense="true" Style="background-color:ghostwhite;padding-top:8px">
-
-                <div style="padding:8px;margin:8px;margin-top:16px">
-                    <input  @bind:event="oninput" class="form-control border-0" id="myInput" style="background-color:lightgray;color:black;border-radius:30px;font-family:'Century Gothic'" required placeholder="Search" />
-
-                </div>
-                <MudSpacer />
-                <MudIconButton Style="margin-right:8px" Icon="@Icons.Material.Filled.Search" Color="Color.Dark" Edge="Edge.End" />
-                <MudIconButton  Icon="@Icons.Material.Outlined.ShoppingCart" Color="Color.Dark" Edge="Edge.Start" />
-                @*<MudIconButton Icon="@Icons.Material.TwoTone.MoreVert" Color="Color.Dark" Edge="Edge.Start" />*@
-            </MudAppBar>
 
 <div class="container-fluid" style="margin-bottom:80px;padding-bottom:10px">
     <MudCarousel  Class="mud-width-full" Style="height:150px;border-radius:8px" ShowArrows="false" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" TData="object">
@@ -119,23 +110,4 @@
 
 </div>
 
-
-<MudAppBar Bottom="true" Fixed="true" Style="background-color:white" Elevation="1">
-
-
-    <MudIconButton Icon="@Icons.Material.Rounded.RssFeed" Color="Color.Warning" Edge="Edge.End" />
-
-
-    <MudSpacer />
-    <MudIconButton Icon="@Icons.Material.Filled.FavoriteBorder" Color="Color.Warning" Edge="Edge.Start" />
-
-    <MudSpacer />
-    <MudFab Style="background-color:white" IconColor="Color.Warning" StartIcon="@Icons.Material.Rounded.Home" Size="Size.Medium" />
-
-    <MudSpacer />
-    <MudIconButton Icon="@Icons.Material.Rounded.ConnectWithoutContact" Color="Color.Warning" Edge="Edge.End" />
-
-    <MudSpacer />
-    <MudIconButton Icon="@Icons.Material.Filled.NotificationsNone" Color="Color.Warning" Edge="Edge.End" />
-
-</MudAppBar>
+             

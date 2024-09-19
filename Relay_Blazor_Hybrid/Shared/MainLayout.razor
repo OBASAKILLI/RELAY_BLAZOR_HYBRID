@@ -11,17 +11,21 @@
         <MudSnackbarProvider />
 
         <MudLayout>
-      
-               
-                
+
+
+           
 
          
           <MudMainContent Class="pt-12 px-0">
+               
                 <CascadingValue Value="this">
+                  
                     <CascadingValue Value="deviceCategory">
+                         
                         <body style="background-color:ghostwhite;font-family:Calibri" class="content px-0">
                             @Body
                         </body>
+                       
                     </CascadingValue>
                 </CascadingValue>
             </MudMainContent>
@@ -60,6 +64,8 @@
     string FirstLeter = "";
     string email = "n/a";
     string color = "";
+
+   
 
     protected override async Task OnInitializedAsync()
     {

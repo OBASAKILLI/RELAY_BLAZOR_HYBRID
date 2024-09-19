@@ -4,115 +4,116 @@
 
 
 
-<MudAppBar Elevation="0" Dense="true" Style="background-color:ghostwhite;padding-top:8px">
+    <MudAppBar Elevation="0" Dense="true" Style="background-color:ghostwhite;padding-top:8px">
 
-    <MudIconButton OnClick="@(()=>naviagte.NavigateTo("/"))" Style="margin-right:8px" Icon="@Icons.Material.Rounded.KeyboardBackspace" Color="Color.Dark" Edge="Edge.End" />
-   
-        <MudText Typo="Typo.h6" Color="Color.Dark"> 
+        <MudIconButton OnClick="@(()=>naviagte.NavigateTo("/"))" Style="margin-right:8px" Icon="@Icons.Material.Rounded.KeyboardBackspace" Color="Color.Dark" Edge="Edge.End" />
+
+        <MudText Typo="Typo.h6" Color="Color.Dark">
             Details
         </MudText>
         <MudSpacer />
-   
-    <MudIconButton Icon="@Icons.Material.Filled.FavoriteBorder" Color="Color.Dark" Edge="Edge.Start" />
-    @*<MudIconButton Icon="@Icons.Material.TwoTone.MoreVert" Color="Color.Dark" Edge="Edge.Start" />*@
-</MudAppBar>
- <MudCard Elevation="0" Style="background-color:transparent">
-    <MudCardHeader>
-        <CardHeaderAvatar>
-        
+
+        <MudIconButton Icon="@Icons.Material.Filled.FavoriteBorder" Color="Color.Dark" Edge="Edge.Start" />
+        <Relay_Blazor_Hybrid.Shared.notifications.Menu />
+    </MudAppBar>
+    <MudCard Elevation="0" Style="background-color:transparent">
+        <MudCardHeader>
+            <CardHeaderAvatar>
+
                 <MudAvatar>
-                        <MudImage Src="Images/coisalogo.jpg"></MudImage>
-</MudAvatar>
-                    
-            
-        </CardHeaderAvatar>
-        <CardHeaderContent>
-            <MudText Typo="Typo.body1">Coisa Computers</MudText>
-            <MudText Typo="Typo.body2" Style="color:gray">Electronics.Kericho-Kenya</MudText>
-        </CardHeaderContent>
-        <CardHeaderActions >
-                    <MudImage ObjectFit="ObjectFit.Cover" style="margin-top:16px" Height="25" Width="35" Src="Gif/FLAG.gif" Alt="kili"  />
-                </CardHeaderActions>
-    </MudCardHeader>
+                    <MudImage Src="Images/coisalogo.jpg"></MudImage>
+                </MudAvatar>
+
+
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <MudText Typo="Typo.body1">Coisa Computers</MudText>
+                <MudText Typo="Typo.body2" Style="color:gray">Electronics.Kericho-Kenya</MudText>
+            </CardHeaderContent>
+            <CardHeaderActions>
+                <MudImage ObjectFit="ObjectFit.Cover" style="margin-top:16px" Height="25" Width="35" Src="Gif/FLAG.gif" Alt="kili" />
+            </CardHeaderActions>
+        </MudCardHeader>
     </MudCard>
-<div class="container-fluid">
-  
-    <MudPaper Style="background-color:transparent" Elevation="0" Height="250px"  Class="d-flex justify-center">
+    <div class="container-fluid">
 
-         <MudCarousel  Class="mud-width-full"  ShowArrows="true" ShowBullets="false" EnableSwipeGesture="true" AutoCycle="true" TData="object">
-        <MudCarouselItem Style="text-align:center" Transition="Transition.Slide" Color="@Color.Transparent">
-                   <MudImage  ObjectFit="ObjectFit.Cover" Height="230" Src="https://png.pngtree.com/png-vector/20230501/ourmid/pngtree-sneakers-running-shoes-trendy-shoe-shapes-png-image_7078175.png" Alt="kili" Class="rounded-lg" />
+        <MudPaper Style="background-color:transparent" Elevation="0" Height="250px" Class="d-flex justify-center">
 
-        </MudCarouselItem>
-      
-    </MudCarousel>
+            <MudCarousel Class="mud-width-full" ShowArrows="true" ShowBullets="false" EnableSwipeGesture="true" AutoCycle="true" TData="object">
+                <MudCarouselItem Style="text-align:center" Transition="Transition.Slide" Color="@Color.Transparent">
+                    <MudImage ObjectFit="ObjectFit.Cover" Height="230" Src="https://png.pngtree.com/png-vector/20230501/ourmid/pngtree-sneakers-running-shoes-trendy-shoe-shapes-png-image_7078175.png" Alt="kili" Class="rounded-lg" />
+
+                </MudCarouselItem>
+
+            </MudCarousel>
 
 
-    </MudPaper>
-    <div>
-        <MudGrid >
-            <MudItem xs="8">
-                <MudText Typo="Typo.h6"><strong>Nike Lebron 8</strong> </MudText>
-                
-            </MudItem>
-            <MudItem xs="4">
-                <div style="text-align:end;margin-right:8px">
-                    <MudText Typo="Typo.h6"><strong>KES 1,200</strong> </MudText>
-                </div>
-            </MudItem>
-               <MudItem  xs="6">
-              <div >
-                    <MudAvatarGroup Max="2" MaxSize="Size.Small" Spacing="2" MaxColor="Color.Primary">
-                        <MudAvatar Size="Size.Small">
-                            <MudImage Src="images/jonny.jpg" />
-                        </MudAvatar>
-                        <MudAvatar Size="Size.Small">
-                            <MudImage Src="images/mony.jpg" />
-                        </MudAvatar>
-                        <MudAvatar Size="Size.Small">
-                            <MudImage Src="images/toiletvisit.jpg" />
-                        </MudAvatar>
-                        <MudAvatar Size="Size.Small">
-                            <MudImage Src="images/toiletvisit.jpg" />
-                        </MudAvatar>
-                    </MudAvatarGroup>
-                    <div style=";color:cornflowerblue;margin-right:8px">
-                        39 Reviews
+        </MudPaper>
+        <div>
+            <MudGrid>
+                <MudItem xs="8">
+                    <MudText Typo="Typo.h6"><strong>Nike Lebron 8</strong> </MudText>
+
+                </MudItem>
+                <MudItem xs="4">
+                    <div style="text-align:end;margin-right:8px">
+                        <MudText Typo="Typo.h6"><strong>KES 1,200</strong> </MudText>
                     </div>
-                </div>                
+                </MudItem>
+                <MudItem xs="6">
+                    <div>
+                        <MudAvatarGroup Max="2" MaxSize="Size.Small" Spacing="2" MaxColor="Color.Primary">
+                            <MudAvatar Size="Size.Small">
+                                <MudImage Src="images/jonny.jpg" />
+                            </MudAvatar>
+                            <MudAvatar Size="Size.Small">
+                                <MudImage Src="images/mony.jpg" />
+                            </MudAvatar>
+                            <MudAvatar Size="Size.Small">
+                                <MudImage Src="images/toiletvisit.jpg" />
+                            </MudAvatar>
+                            <MudAvatar Size="Size.Small">
+                                <MudImage Src="images/toiletvisit.jpg" />
+                            </MudAvatar>
+                        </MudAvatarGroup>
+                        <div style=";color:cornflowerblue;margin-right:8px">
+                            39 Reviews
+                        </div>
+                    </div>
 
-               
-            </MudItem>
-            <MudItem Style="text-align:end" xs="6">
-                <MudRating SelectedValue="2" />
-                <div style="text-align:center">
-                    <MudText Style="color:orange;font-size:small">3.4 Rating </MudText>
-                </div>
-            </MudItem>
-         
 
-        </MudGrid>
+                </MudItem>
+                <MudItem Style="text-align:end" xs="6">
+                    <MudRating SelectedValue="2" />
+                    <div style="text-align:center">
+                        <MudText Style="color:orange;font-size:small">3.4 Rating </MudText>
+                    </div>
+                </MudItem>
 
-       
 
-        <MudText Style="color:gray;margin-top:24px" Typo="Typo.h6"><strong>Description</strong> </MudText>
-        <MudText Typo="Typo.body1" Style="color:gray;margin-top:8px">
-            We are located along accra road and dubois road junction at 
-            superior arcade building1st floor shop no 37 </MudText>
+            </MudGrid>
+
+
+
+            <MudText Style="color:gray;margin-top:24px" Typo="Typo.h6"><strong>Description</strong> </MudText>
+            <MudText Typo="Typo.body1" Style="color:gray;margin-top:8px">
+                We are located along accra road and dubois road junction at
+                superior arcade building1st floor shop no 37
+            </MudText>
+        </div>
+
     </div>
-   
-</div>
 
 
-<MudAppBar Bottom="true" Fixed="true" Style="background-color:white;padding:4px" Elevation="1">
+    <MudAppBar Bottom="true" Fixed="true" Style="background-color:white;padding:4px" Elevation="1">
 
 
-    <MudIconButton Icon="@Icons.Material.Filled.ShoppingCart" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Large" />
+        <MudIconButton Icon="@Icons.Material.Filled.Favorite" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Large" />
 
 
-    <MudButton Style="width:100%;margin-left:8px" Variant="Variant.Filled" Size="Size.Large" Color="Color.Primary">Buy now</MudButton>
-    
+        <MudButton Style="width:100%;margin-left:8px" StartIcon="@Icons.Material.Filled.LocalPhone" Variant="Variant.Filled" Size="Size.Large" Color="Color.Primary">Show Contacts</MudButton>
 
-</MudAppBar>
+
+    </MudAppBar>
 
 </body>

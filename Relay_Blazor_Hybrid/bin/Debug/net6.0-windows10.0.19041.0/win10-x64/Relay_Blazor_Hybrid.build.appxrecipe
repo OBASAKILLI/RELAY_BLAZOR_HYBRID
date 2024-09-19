@@ -922,6 +922,18 @@
     <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\favicon.ico">
       <PackagePath>wwwroot\favicon.ico</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Gif\FLAG.gif">
+      <PackagePath>wwwroot\Gif\FLAG.gif</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\coisalogo.jpg">
+      <PackagePath>wwwroot\Images\coisalogo.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\facebook.png">
+      <PackagePath>wwwroot\Images\facebook.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\search.png">
+      <PackagePath>wwwroot\Images\search.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\index.html">
       <PackagePath>wwwroot\index.html</PackagePath>
     </AppxPackagedFile>
