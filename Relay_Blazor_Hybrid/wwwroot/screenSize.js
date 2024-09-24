@@ -16,3 +16,8 @@ function registerResizeHandler(dotNetHelper) {
         dotNetHelper.invokeMethodAsync("OnResizeHandler");
     });
 }
+
+
+function changeStatusBarColor(color) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', color);
+}

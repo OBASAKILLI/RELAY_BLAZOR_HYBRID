@@ -1,5 +1,6 @@
 ﻿@page "/Manage_Businesses"
 @layout MainLayout
+@inject IJSRuntime JSRuntime
 <meta name="theme-color" content="darkorange" />
 
 <body style="background-color:darkorange;height:100%;padding-top:8px">
@@ -33,7 +34,7 @@
 
     @for (var i = 0; i < 5; i++)
     {
-        <MudPaper Elevation="25" Style=";padding:8px;border-radius:16px;margin-top:8px">
+        <MudPaper @onclick="@(()=>naviagte.NavigateTo("/CompleteProfile_one"))" Elevation="25" Style=";padding:8px;border-radius:16px;margin-top:8px">
             <div class="horizontal-container">
                 <MudImage Src="Images/coisalogo.jpg" Height="40" Width="40" Alt="kili" Class="rounded-lg ma-1  " />
                 <div style="width:100%;">
@@ -41,7 +42,7 @@
                       <div class="horizontal-container">
                   <div>
                             <MudText Style="color:gray" Typo="Typo.h6">Coisa Computers </MudText>
-                            <MudText Typo="Typo.body2" Style="color:gray">Wholesale </MudText>
+                            <MudText Typo="Typo.body2" Style="color:gray">Electronics . Wholesale </MudText>
                         </div>
                       <MudSpacer/>
                         <MudMenu Icon="@Icons.Material.TwoTone.MoreVert" Dense="true">

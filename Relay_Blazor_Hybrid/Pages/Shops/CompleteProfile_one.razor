@@ -1,0 +1,33 @@
+﻿@page "/CompleteProfile_one"
+@layout RetailShopLayout
+
+<div class="container-fluid">
+    
+    <div style="text-align:center;margin-top:16px">
+        <MudAvatar Style="height:70px; width:70px; font-size:2rem;" Color="Color.Primary">A</MudAvatar>
+           <MudText Typo="Typo.h5" Class="px-4 mt-3 text-capitalize">Coisa Computers</MudText>
+        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Electronics Shop</MudText>
+</div>
+     
+
+<MudTimeline  TimelineOrientation="TimelineOrientation.Horizontal" TimelineAlign="TimelineAlign.Start" DisableModifiers=false>
+    <MudTimelineItem>
+       
+    </MudTimelineItem>
+    <MudTimelineItem>
+    </MudTimelineItem>
+   
+</MudTimeline>
+
+<Relay_Blazor_Hybrid.Pages.Shops.ShopInformation.BasicInfo/>
+
+
+       <div style="padding:8px;text-align:center;margin:8px">
+            <MudFab Size="Size.Small" StartIcon="@Icons.Material.Filled.Add" Color="Color.Warning" Label="Register new Business" />
+       </div>
+
+</div>
+
+      @code{
+          string TextValue="";
+      }

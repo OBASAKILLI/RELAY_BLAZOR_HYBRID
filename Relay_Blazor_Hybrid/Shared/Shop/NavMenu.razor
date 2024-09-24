@@ -1,0 +1,47 @@
+﻿@using System.Drawing
+
+<style>
+    .mud-expansion-panel-reduced-margin .mud-expand-panel-body {
+        margin-top: 400px;
+        background-color: red;
+        /* Adjust this value to your desired top margin */
+    }
+</style>
+
+<MudNavMenu Margin="Margin.Dense" Style="margin-bottom:24px" Color="MudBlazor.Color.Warning">
+    <div style="text-align:center;margin-top:16px">
+
+        <MudAvatar Style="@avaterstyle">C</MudAvatar>
+
+        <MudText Typo="Typo.h5" Class="px-4 mt-3 text-capitalize">Coisa Computers</MudText>
+        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">coisacomputers@gmail.com</MudText>
+    </div>
+    <MudDivider Style="margin-top:8px" />
+    <MudNavLink Href="/Home" Icon="@Icons.Material.Outlined.AccountCircle">Your Profile</MudNavLink>
+    <MudNavLink Href="/Home" Icon="@Icons.Material.Outlined.LocationOn">Manage Address</MudNavLink>
+    <MudNavLink Href="/Home" Icon="@Icons.Material.Filled.DisplaySettings">My Orders</MudNavLink>
+    <MudNavLink Href="/Home" Icon="@Icons.Material.Filled.Settings">Settings</MudNavLink>
+    <MudNavLink Href="/Home" Icon="@Icons.Material.Filled.HelpOutline">Help Center</MudNavLink>
+    <MudExpansionPanels Dense="true" Elevation="0">
+
+        <MudNavGroup Class="mud-expansion-panel-reduced-margin" Icon="@Icons.Material.Rounded.FormatIndentIncrease" Title="Entity">
+            <div style="background-color:ghostwhite" class="mud-elevation-1">
+                <MudNavLink Href="/entityroletypecategory">Entity Role-Types Category</MudNavLink>
+             
+            </div>
+
+        </MudNavGroup>
+
+     
+       
+
+    </MudExpansionPanels>
+ 
+
+</MudNavMenu>
+
+
+        @code{
+    string avaterstyle = $"background-color:Orange; height:70px; width:70px; font-size:2rem;color:white";
+
+        }
