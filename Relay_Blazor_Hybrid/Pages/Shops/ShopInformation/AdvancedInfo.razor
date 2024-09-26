@@ -1,9 +1,34 @@
-﻿ <MudText Typo="Typo.body1" Style="font-size:small;color:gray;margin-top:8px">
-       Addreddress
-    </MudText>
-    <MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6" Placeholder="P.O BOX ***" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+﻿
+<MudTimeline TimelineOrientation="TimelineOrientation.Horizontal" TimelineAlign="TimelineAlign.Start" DisableModifiers=false>
+    <MudTimelineItem DotStyle="background-color: black">
 
-    
-      @code{
-          string TextValue="";
+    </MudTimelineItem>
+    <MudTimelineItem DotStyle="background-color: black">
+    </MudTimelineItem>
+
+</MudTimeline>
+
+
+<MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6"   Label="Address" Variant="Variant.Text" Margin="Margin.Dense"></MudTextField>
+
+
+<MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6"  Label="website" Variant="Variant.Text" Margin="Margin.Dense">
+
+</MudTextField>
+
+
+<MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6"  Label="Facebook" Variant="Variant.Text" Margin="Margin.Dense"></MudTextField>
+
+
+<MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6" Label="X"  Variant="Variant.Text" Margin="Margin.Dense"></MudTextField>
+
+
+<MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6" Label="Instagram" Variant="Variant.Text" Margin="Margin.Dense"></MudTextField>
+
+<div style="padding:8px;text-align:end;margin:8px">
+    <MudFab Size="Size.Small" EndIcon="@Icons.Material.Filled.NavigateNext" Color="Color.Warning" Label="Save" />
+</div>
+
+@code {
+    string TextValue = "";
       }

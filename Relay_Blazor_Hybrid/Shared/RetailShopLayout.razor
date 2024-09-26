@@ -14,23 +14,23 @@
 
             <MudAppBar Elevation="0" Dense="true" Style="background-color:ghostwhite;padding-top:8px">
 
-                <MudIconButton OnClick="@ToggleDrawer" Style="margin-right:8px" Icon="@Icons.Material.Filled.Menu" Edge="Edge.Start" />
-               
+                <MudIconButton OnClick="@ToggleDrawer" Style="margin-right:8px" Icon="@Icons.Material.Rounded.Notes" Edge="Edge.Start" />
 
-    <MudSpacer />
+
+                <MudSpacer />
 
                 <MudIconButton Style="margin-right:8px" OnClick="@(()=>naviagte.NavigateTo("/Retail_Nottifications"))" Icon="@Icons.Material.Filled.NotificationsNone" />
-    <Relay_Blazor_Hybrid.Shared.notifications.Menu />
+                <Relay_Blazor_Hybrid.Shared.Shop.Menubutton />
 
-</MudAppBar>
+            </MudAppBar>
             <MudDrawer @bind-Open="@open" ClipMode="clipMode" Breakpoint="@breakpoint" PreserveOpenState="@preserveOpenState" Elevation="1" Variant="@DrawerVariant.Temporary">
-               
-                <Relay_Blazor_Hybrid.Shared.Shop.NavMenu/>
+
+                <Relay_Blazor_Hybrid.Shared.Shop.NavMenu />
             </MudDrawer>
 
-            <Relay_Blazor_Hybrid.Shared.Shop.Bottom_Navigation/>
+            <Relay_Blazor_Hybrid.Shared.Shop.Bottom_Navigation />
 
-          <MudMainContent Class="pt-9 px-0">
+            <MudMainContent Class="pt-9 px-0">
 
                 <CascadingValue Value="this">
 

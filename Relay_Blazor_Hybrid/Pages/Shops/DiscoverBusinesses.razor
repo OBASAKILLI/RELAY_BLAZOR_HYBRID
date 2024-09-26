@@ -1,0 +1,107 @@
+﻿@page "/DiscoverBusinesses"
+@layout RetailShopLayout
+
+
+<div class="container-fluid">
+    <div style="margin-left:16px;margin-right:16px">
+        <MudTextField Placeholder="Search" Margin="Margin.Dense" T="string" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" Class="rounded-pill" />
+
+    </div>
+    <MudGrid Style="margin:16px">
+
+        <MudText Typo="Typo.h6" Style="color:gray">
+            Connected Businesses
+        </MudText>
+
+
+    </MudGrid>
+    <style>
+        .hide-scrollbar {
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none; /* For Firefox */
+        }
+
+            .hide-scrollbar::-webkit-scrollbar {
+                display: none; /* For Chrome, Safari, Edge, and WebView */
+            }
+
+        .horizontal-scroll {
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+
+        .grid-horizontal-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 16px; /* Adjust spacing between items as needed */
+        }
+    </style>
+    <div class="grid-horizontal-scroll">
+        @for (var i = 0; i < 10; i++)
+        {
+            <MudItem xs="12" sm="12" md="12" Style="width:300px">
+                <MudCard Style="width:300px;border-radius:8px">
+                    <MudCardHeader>
+
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.body1">Coisa</MudText>
+                            <MudText Typo="Typo.body2">electronics    <MudIcon Color="Color.Info" Size="Size.Small" Icon="@Icons.Material.Filled.Verified"></MudIcon> </MudText>
+                        </CardHeaderContent>
+                        <CardHeaderActions>
+                            <MudImage ObjectFit="ObjectFit.Cover" style="margin-top:16px" Height="25" Width="35" Src="Gif/FLAG.gif" Alt="kili" />
+                        </CardHeaderActions>
+                    </MudCardHeader>
+                    <MudCardMedia Image="https://c8.alamy.com/comp/CF4H1C/the-exterior-of-a-local-convenience-shop-british-food-wine-store-in-CF4H1C.jpg" Height="150" />
+
+                    <MudCardActions>
+                        <div Style="color:gray;font-size:small">   <MudIcon Size="Size.Small" Icon="@Icons.Material.Outlined.LocationOn"></MudIcon> Kericho.Kenya  </div>
+                        <MudSpacer />
+                        <MudChip T="string" Size="Size.Small" Variant="Variant.Text" Icon="@Icons.Material.Outlined.MobiledataOff" Color="Color.Error">Disconnect</MudChip>
+
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        }
+    </div>
+    <MudGrid Style="margin:16px">
+
+        <MudText Typo="Typo.h6" Style="color:gray">
+            Discover other Businesses
+        </MudText>
+
+    </MudGrid>
+
+    @for (var i = 0; i < 10; i++)
+    {
+        <MudPaper Elevation="25" Style=";padding:8px;border-radius:16px;margin-top:8px">
+            <div class="horizontal-container">
+                <MudImage Src="Images/coisalogo.jpg" Height="50" Width="50" Alt="kili" Class="rounded-lg ma-1  " />
+                <div style="width:100%;">
+                    <div class="horizontal-container">
+                        <div>
+                            <MudText Typo="Typo.body1"><strong>Coisa Computers</strong> </MudText>
+
+                            <div Style="color:gray;font-size:small"> Electronics   <MudIcon Color="Color.Info" Size="Size.Small" Icon="@Icons.Material.Filled.Verified"></MudIcon> </div>
+                            <div Style="color:gray;font-size:small">   <MudIcon Size="Size.Small" Icon="@Icons.Material.Outlined.LocationOn"></MudIcon> Kericho.Kenya  </div>
+
+                        </div>
+                        <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined" Icon="@Icons.Material.Outlined.Cable" Color="Color.Dark">Connect</MudChip>
+
+                    </div>
+                </div>
+            </div>
+        </MudPaper>
+    }
+
+    <style>
+        .horizontal-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+    </style>
+
+</div>

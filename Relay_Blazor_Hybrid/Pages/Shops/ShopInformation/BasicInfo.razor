@@ -1,4 +1,14 @@
-﻿ <MudText Typo="Typo.body1" Style="font-size:small;color:gray;margin-top:8px">
+﻿
+<MudTimeline TimelineOrientation="TimelineOrientation.Horizontal" TimelineAlign="TimelineAlign.Start" DisableModifiers=false>
+    <MudTimelineItem DotStyle="background-color: black">
+
+    </MudTimelineItem>
+    <MudTimelineItem>
+    </MudTimelineItem>
+
+</MudTimeline>
+
+<MudText Typo="Typo.body1" Style="font-size:small;color:gray;margin-top:8px">
         Phone
     </MudText>
     <MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6" Placeholder="+2457*******" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
@@ -22,8 +32,10 @@
       Town
     </MudText>
     <MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6" Placeholder="Nairobi" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
-    
-     
+
+<div style="padding:8px;text-align:end;margin:8px">
+    <MudFab Size="Size.Small" EndIcon="@Icons.Material.Filled.NavigateNext" Color="Color.Warning" Label="Next" />
+</div>
      
       @code{
           string TextValue="";

@@ -1,0 +1,30 @@
+﻿@page "/Create_Item"
+@layout RetailShopLayout
+<div class="container-fluid">
+
+    <div style="margin-8px;border:solid 2px; gray;height:150px;width:100%;margin-top:24px" >
+        image
+    </div>
+
+    <MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6;margin-top:8px" Label="Title" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+    <MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6;margin-top:8px" Label="Category" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+    <MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6;margin-top:8px" Label="QTY" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+    <MudGrid>
+        <MudItem xs="6">
+            <MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6;margin-top:8px" Label="Price" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+
+        </MudItem>
+        <MudItem xs="6">
+            <MudTextField @bind-Value="TextValue" Style="background-color:#F6F6F6;margin-top:8px" Label="Prev-Price" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+
+        </MudItem>
+    </MudGrid>
+    <MudTextField Lines="5" @bind-Value="TextValue" Style="background-color:#F6F6F6;margin-top:8px" Label="Description" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+
+    <MudButton Style="width:100%;margin-top:16px" StartIcon="@Icons.Material.Filled.CloudUpload" Variant="Variant.Filled" Size="Size.Large" Color="Color.Primary">Upload Post</MudButton>
+
+</div>
+
+@code {
+    string TextValue = "";
+    }
