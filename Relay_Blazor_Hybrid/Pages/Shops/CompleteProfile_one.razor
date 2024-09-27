@@ -3,15 +3,27 @@
 
 <div class="container-fluid" style="margin-bottom:60px">
 
-    <div style="text-align:center;margin-top:16px">
-        <MudAvatar Style="height:70px; width:70px; font-size:2rem;" Color="Color.Primary">A</MudAvatar>
-        <MudText Typo="Typo.h5" Class="px-4 mt-3 text-capitalize">Coisa Computers</MudText>
-        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Electronics Shop</MudText>
+
+ 
+    @if (isBasic){
+            <Relay_Blazor_Hybrid.Pages.Shops.ShopInformation.BasicInfo />
+
+    }else{
+                <Relay_Blazor_Hybrid.Pages.Shops.ShopInformation.AdvancedInfo />
+
+    }
+    <div style="padding:8px;text-align:end;margin:8px">
+        <MudFab OnClick="ChangeLayout_Next" Size="Size.Small" EndIcon="@Icons.Material.Filled.NavigateNext" Color="Color.Warning" Label="@ButtonText" />
     </div>
-    <Relay_Blazor_Hybrid.Pages.Shops.ShopInformation.AdvancedInfo />
 </div>
 
 @code
 {
+    bool isBasic = true;
+    string ButtonText = "Next";
+    void ChangeLayout_Next(){
+        isBasic = false;
+        ButtonText = "Finish";
+    }
     string TextValue = "";
 }
