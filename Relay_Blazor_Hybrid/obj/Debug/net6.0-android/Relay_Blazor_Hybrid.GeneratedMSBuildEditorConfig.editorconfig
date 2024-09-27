@@ -204,6 +204,20 @@ build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvcHNcU2hvcEluZm9ybWF0aW9u
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/Shops/ShopInformation/ChatTypingArea.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvcHNcU2hvcEluZm9ybWF0aW9uXENoYXRUeXBpbmdBcmVhLnJhem9y
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/Shops/Specific_Chat.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvcHNcU3BlY2lmaWNfQ2hhdC5yYXpvcg==
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/Wishlist.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
@@ -243,6 +257,13 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFNob3BcQm90dG9tX05hdmlnYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Shared/Shop/ChatMenu.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFNob3BcQ2hhdE1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = 
 

@@ -1,0 +1,176 @@
+﻿@page "/Specific_Chat"
+
+
+
+<meta name="theme-color" content="#FFA500" />
+
+<body style="background-color:#FFA500;height:100%;padding-top:8px;">
+
+   @* <MudAppBar Elevation="0" Dense="true" Style="background-color:darkorange;padding-top:8px;color:white">
+
+
+        <MudIconButton OnClick="@(()=>naviagte.NavigateTo("/Retail_Chats"))" Style="color:white" Icon="@Icons.Material.Rounded.KeyboardBackspace" Edge="Edge.Start" />
+
+    
+
+      
+        
+        <div class="horizontal-container" >
+            <MudAvatar Size="Size.Medium" Color="Color.Primary">I</MudAvatar>
+            <div style="width:100%;">
+                <div class="horizontal-container">
+                    <div>
+                        <MudText Style="color:white" Typo="Typo.h6">Iconic Connie </MudText>
+                        <MudText Typo="Typo.body2" Style="color:white">Online </MudText>
+                    </div>                 
+                </div>
+            </div>
+        </div>
+        <MudSpacer />
+          
+       
+       <Relay_Blazor_Hybrid.Shared.Shop.ChatMenu/>
+
+    </MudAppBar>*@
+
+    <MudAppBar Elevation="0" Style="background-color:#FFA500;color:white">
+    <MudGrid>
+      
+
+        <MudItem xs="7" style="display: flex; align-items: center;">
+            <!-- Profile Picture, Name, and Online Status -->
+                    <MudIconButton OnClick="@(()=>naviagte.NavigateTo("/Retail_Chats"))" Style="color:white" Icon="@Icons.Material.Rounded.KeyboardBackspace" Edge="Edge.Start" />
+
+            <MudAvatar Image="profile_picture_url.jpg" Size="Size.Medium" />
+            <div style="margin-left: 10px; color: white;">
+                <div style="font-weight: bold;">Iconic Connie</div>
+                <div style="font-size: small; color: lightgreen;">Online</div>
+            </div>
+        </MudItem>
+
+        <MudItem xs="5" style="text-align: right;">
+                <MudIconButton Style="margin-right:8px;color:white" Icon="@Icons.Material.Outlined.Videocam" />
+                <MudIconButton Style="margin-right:8px;color:white" Icon="@Icons.Material.Outlined.Call" />
+        </MudItem>
+    </MudGrid>
+</MudAppBar>
+
+@code {
+    // Logic to go back
+    private void GoBack()
+    {
+        // Implement navigation logic to go back to the previous page
+    }
+}
+
+
+    <div style="background-color:white;border-top-left-radius:30px;border-top-right-radius:30px;height:100%;padding-top:8px">
+
+        <div class="container-fluid">
+            <MudGrid Style="margin-bottom:80px">
+               
+                <MudItem xs="12">
+                    <div style="display: flex; justify-content: flex-start;">
+                        <div style="background-color: lightgray; padding: 10px; border-radius: 10px; max-width: 70%;">
+                            Kilimoli
+                        </div>
+                    </div>
+                </MudItem>
+
+              
+                <MudItem xs="12">
+                    <div style="display: flex; justify-content: flex-end;">
+                        <div style="background-color: lightblue; padding: 10px; border-radius: 10px; max-width: 70%;">
+                            Sasa Connie..Ukoje
+                        </div>
+                    </div>
+                </MudItem>
+
+              
+                <MudItem xs="12">
+                    <div style="display: flex; justify-content: flex-start;">
+                        <div style="background-color: lightgray; padding: 10px; border-radius: 10px; max-width: 70%;">
+                            Poa kili
+                        </div>
+                    </div>
+                </MudItem>
+              
+                <MudItem xs="12">
+                    <div style="display: flex; justify-content: flex-start;">
+                        <div style="background-color: lightgray; padding: 10px; border-radius: 10px; max-width: 70%;">
+                            Nauza solar pumps
+                        </div>
+                    </div>
+                </MudItem>
+             
+
+               
+                <MudItem xs="12">
+                    <div style="display: flex; justify-content: flex-end;">
+                        <div style="background-color: lightblue; padding: 10px; border-radius: 10px; max-width: 70%;">
+                            Ya maji? ama gani izo?
+                        </div>
+                    </div>
+                </MudItem>
+                <MudItem xs="12">
+                    <div style="display: flex; justify-content: flex-start;">
+                        <div style="background-color: lightgray; padding: 10px; border-radius: 10px; max-width: 70%;">
+                            Yaaaa, hebu angalia status yangu
+                        </div>
+                    </div>
+                </MudItem>
+                <MudItem xs="12">
+                    <div style="display: flex; justify-content: flex-start;">
+                        <div style="background-color: lightgray; padding: 10px; border-radius: 10px; max-width: 70%;">
+                            Nikakumbuka ww ndo una kuanga self contained
+                        </div>
+                    </div>
+                </MudItem>
+                
+                <MudItem xs="12">
+                    <div style="display: flex; justify-content: flex-end;">
+                        <div style="background-color: lightblue; padding: 10px; border-radius: 10px; max-width: 70%;">
+                            sawa..acha ntakucalll
+                        </div>
+                    </div>
+                </MudItem>
+
+                <MudItem xs="12">
+                    <div style="display: flex; justify-content: flex-start;">
+                        <div style="background-color: lightgray; padding: 10px; border-radius: 10px; max-width: 70%;">
+                            Sawa tuongee majioni ma time yetu
+                        </div>
+                    </div>
+                </MudItem>
+                <MudItem xs="12">
+                    <div style="display: flex; justify-content: flex-end;">
+                        <div style="background-color: lightblue; padding: 10px; border-radius: 10px; max-width: 70%;">
+                            Sasawa..utawaambia akina manu na mwarabu .
+                        </div>
+                    </div>
+                </MudItem>
+            </MudGrid>
+
+            
+            <style>
+                .horizontal-container {
+                    display: flex;
+                    justify-content: space-between;
+                  
+                }
+
+            </style>
+
+
+
+        </div>
+
+    </div>
+
+
+    <Relay_Blazor_Hybrid.Pages.Shops.ShopInformation.ChatTypingArea/>
+</body>
+@code {
+    string TextValue { get; set; }
+
+}

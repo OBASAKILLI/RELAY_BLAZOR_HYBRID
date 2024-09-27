@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Relay_Blazor_Hybrid"
              x:Class="Relay_Blazor_Hybrid.MainPage"
+              
              BackgroundColor="{DynamicResource PageBackgroundColor}">
 
     <BlazorWebView HostPage="wwwroot/index.html">

@@ -1,0 +1,47 @@
+﻿<MudGrid  style="position: fixed; bottom: 0; width: 100%; padding: 10px; background-color: #f5f5f5; border-top: 1px solid #ccc;">
+    <!-- File Icon on the Left -->
+  
+
+    <!-- Text Input Field for Message -->
+    <MudItem xs="8">
+        
+        <MudTextField @bind-Value="messageText" Placeholder="Type a message..." Margin="Margin.Dense" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.EmojiEmotions" />
+    </MudItem>
+
+    <!-- Voice Recording Icon -->
+
+
+    <!-- Send Message Icon -->
+    <MudItem xs="2">
+        <MudIconButton Icon="@Icons.Material.Filled.Mic" Color="Color.Default" OnClick="RecordVoice" />
+    </MudItem>
+    <MudItem xs="2">
+        <MudIconButton Icon="@Icons.Material.Filled.Send" Color="Color.Primary" OnClick="SendMessage" Disabled="@string.IsNullOrWhiteSpace(messageText)" />
+    </MudItem>
+</MudGrid>
+
+@code {
+    private string messageText;
+
+    // Function to handle file selection
+    private void SelectFile()
+    {
+        // Add file selection logic here
+    }
+
+    // Function to handle voice recording
+    private void RecordVoice()
+    {
+        // Add voice recording logic here
+    }
+
+    // Function to send a message
+    private void SendMessage()
+    {
+        if (!string.IsNullOrWhiteSpace(messageText))
+        {
+            // Add logic to send the message
+            messageText = string.Empty; // Clear the input field after sending
+        }
+    }
+}

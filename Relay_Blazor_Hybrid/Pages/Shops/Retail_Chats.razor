@@ -1,7 +1,86 @@
 ﻿@page "/Retail_Chats"
 @layout RetailShopLayout
-<h3>Retail_Chats</h3>
 
+
+<meta name="theme-color" content="darkorange" />
+
+<body style="background-color:#FFA500;height:100%;padding-top:8px">
+
+    <MudAppBar Elevation="0" Dense="true" Style="background-color:#FFA500;padding-top:8px;color:white">
+
+
+    <MudIconButton  OnClick="@(()=>naviagte.NavigateTo("/"))" Style="margin-right:8px;color:white" Icon="@Icons.Material.Rounded.KeyboardBackspace"  Edge="Edge.End" />
+
+    <MudText Typo="Typo.h6" Style="color:white">
+       Chats
+    </MudText>
+    <MudSpacer />
+
+
+
+</MudAppBar>
+ <div style="margin:24px">
+        <input @bind="TextValue" @bind:event="oninput" class="form-control border-0" id="myInput" style="background-color:#D0CFD6;color:black;border-radius:20px;font-family:'Century Gothic';padding:8px" required placeholder="Search" />
+
+    </div>
+
+
+
+    <div style="background-color:white;border-top-left-radius:30px;border-top-right-radius:30px;height:100%;padding-top:8px">
+
+<div class="container-fluid">
+
+
+
+
+            @for (var i = 0; i < 20; i++)
+            {
+                <MudPaper @onclick="@(()=>naviagte.NavigateTo("/Specific_Chat"))" Elevation="0" Style=";padding:8px;border-radius:16px;margin-top:8px">
+                <div class="horizontal-container">
+<MudAvatar Size="Size.Medium" Color="Color.Primary">I</MudAvatar>
+                    <div style="width:100%;">
+
+                          <div class="horizontal-container">
+                      <div>
+                                <MudText Style="color:gray" Typo="Typo.h6">Iconic Connie </MudText>
+                                    <MudText Typo="Typo.body2" Style="color:gray">Sawa tuongee majioni.. </MudText>
+                            </div>
+                          <MudSpacer/>
+                            <MudText Typo="Typo.body2" Style="color:gray">09.23 PM </MudText>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+            </MudPaper>
+            }
+
+
+    <style>
+        .horizontal-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+    </style>
+
+
+
+</div>
+
+</div>
+
+         
+
+
+             <Relay_Blazor_Hybrid.Shared.Shop.Bottom_Navigation/>
+
+</body>
 @code {
-
+    string TextValue { get; set; }
+  
 }
