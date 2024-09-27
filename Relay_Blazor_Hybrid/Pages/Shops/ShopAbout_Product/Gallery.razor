@@ -1,0 +1,24 @@
+﻿
+<div class="row">
+    <div class="col-6">
+        <MudText Style="color:gray;" Typo="Typo.body1">Gallery (25) </MudText>
+    </div>
+    <div class="col-6">       
+            <MudText style="text-align:end;color:cornflowerblue">
+                View all
+            </MudText>      
+    </div>
+</div>
+<MudGrid Style="margin-top:8px">
+    @for (var i = 0; i < 10; i++)
+    {
+        <MudItem xs="6">
+            <MudCard Style="height:auto;border-radius:14px" Elevation="25">
+
+                <MudCardMedia Image="https://png.pngtree.com/png-vector/20230501/ourmid/pngtree-sneakers-running-shoes-trendy-shoe-shapes-png-image_7078175.png" Height="150" />
+            </MudCard>
+        </MudItem>
+    }
+
+
+</MudGrid>

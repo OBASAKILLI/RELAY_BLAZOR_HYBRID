@@ -4,21 +4,24 @@
 
 
 <div class="container-fluid" style="margin-bottom:80px;padding-bottom:10px">
-    <MudCarousel  Class="mud-width-full" Style="height:150px;border-radius:8px" ShowArrows="false" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" TData="object">
-        <MudCarouselItem Transition="Transition.Slide" Color="@Color.Primary">
+    <MudCarousel  Class="mud-width-full" Style="height:150px;border-radius:8px"  ShowArrows="false" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" TData="object">
+        <MudCarouselItem Transition="Transition.Slide" Color="@Color.Transparent">
             <div class="d-flex" style="height:100%">
-                <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+                <MudImage Src="Images/ad1.jpg" alt="Image 1" style="height:100%; object-fit: cover;width:100%" />
             </div>
         </MudCarouselItem>
-        <MudCarouselItem Transition="Transition.Slide" Color="@Color.Secondary">
+        <MudCarouselItem Transition="Transition.Slide" Color="@Color.Transparent">
             <div class="d-flex" style="height:100%">
-                <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+                <MudImage Src="Images/ad2.jpg" alt="Image 1" style="height:100%; object-fit: cover;width:100%" />
             </div>
         </MudCarouselItem>
-        <MudCarouselItem Transition="Transition.Slide" Color="@Color.Warning">
+        <MudCarouselItem Transition="Transition.Slide" Color="@Color.Transparent">
             <div class="d-flex" style="height:100%">
-                <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Color="@Color.Primary" Size="@Size.Large" />
-            </div>
+ <MudImage   Src="Images/ad3.jpg" alt="Image 1" style="height:100%; object-fit: cover;width:100%" />     
+ </div>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide" Color="@Color.Transparent">
+        <MudImage   Src="Images/ad4.jpg" alt="Image 1" style="height:100%; object-fit: cover;width:100%" />  
         </MudCarouselItem>
     </MudCarousel>
 
@@ -29,9 +32,12 @@
        </MudText>
     </MudItem>
     <MudItem xs="6">
-       <div style="text-align:end;color:cornflowerblue;margin-right:8px">
-           See all
-       </div>
+        <a href="/All_Categories">
+                <div style="text-align:end;color:cornflowerblue;margin-right:8px">
+                    See all
+                </div>
+            </a>
+     
     </MudItem>
     </MudGrid>
 
@@ -51,7 +57,7 @@
     <div style="overflow-x: auto; white-space: nowrap;" class="hide-scrollbar">
     @for (var i = 0; i < 10; i++)
     {
-        <MudChip T="string" Style="margin-right:8px" Variant="Variant.Text">Default</MudChip>
+        <MudChip T="string" Style="margin-right:8px" Variant="Variant.Text">Gaming</MudChip>
     }
     </div>
 
@@ -74,16 +80,7 @@
          {
             <MudItem xs="6">
                 <MudCard @onclick="@(()=>naviagte.NavigateTo("/ProductDetails"))" Style="height:200px;border-radius:14px" Elevation="25">
-                    @* <MudCardHeader>
-                <CardHeaderAvatar>
-                <MudAvatar Size="Size.Small" Color="Color.Secondary">I</MudAvatar>
-                </CardHeaderAvatar>
-                <CardHeaderContent>
-                <MudText Typo="Typo.body1">Coisa Computers</MudText>
-                <MudText Typo="Typo.body2" Style="color:gray">Electronics.Kericho.Kenya</MudText>
-                </CardHeaderContent>
-
-                </MudCardHeader>*@
+                   
                     <MudCardMedia Image="https://png.pngtree.com/png-vector/20230501/ourmid/pngtree-sneakers-running-shoes-trendy-shoe-shapes-png-image_7078175.png" Height="100" />
 
                     <MudCardContent>

@@ -1,0 +1,60 @@
+﻿<div class="row">
+    <div class="col-6">
+        <MudText Style="color:gray;" Typo="Typo.body1">Reviews </MudText>
+    </div>
+    <div class="col-6">
+        <div style="text-align:end;color:cornflowerblue;margin-right:8px">
+            <MudIcon Size="Size.Small" Icon="@Icons.Material.Outlined.Edit"></MudIcon>  add review
+        </div>
+    </div>
+</div>
+
+
+
+<div style="margin:24px">
+    <input @bind="TextValue" @bind:event="oninput" class="form-control border-0" id="myInput" style="background-color:#D0CFD6;color:black;border-radius:20px;font-family:'Century Gothic';padding:8px" required placeholder="Search" />
+
+</div>
+
+@for (var i = 0; i < 20; i++)
+{
+    <MudPaper @onclick="@(()=>naviagte.NavigateTo("/Specific_Chat"))" Elevation="0" Style=";padding:8px;border-radius:16px;margin-top:8px">
+        <div class="horizontal-container">
+            <MudAvatar Size="Size.Medium" Color="Color.Primary">I</MudAvatar>
+            <div style="width:100%;">
+
+                <div class="horizontal-container">
+                    <div>
+                        <MudText Style="color:gray" Typo="Typo.h6">Iconic Connie </MudText>
+                        <MudRating Size="Size.Small" SelectedValue="2" />
+                        <div style="text-align:start">
+                            <MudText Style="color:orange;font-size:small">3.4 Rating </MudText>
+                        </div>
+                        <MudText Typo="Typo.body2" Style="color:gray">Sawa tuongee majioni.. </MudText>
+                        
+                    </div>
+                    <MudSpacer />
+                    
+                    <div>
+                        <MudText Typo="Typo.body2" Style="color:gray">11 Months ago </MudText>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </MudPaper>
+}
+
+<style>
+    .horizontal-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+</style>
+@code {
+    string TextValue { get; set; }
+
+}

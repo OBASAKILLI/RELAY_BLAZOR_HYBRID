@@ -1,0 +1,139 @@
+﻿@page "/Retail_Shop_Details"
+
+
+
+<meta name="theme-color" content="#FFA500" />
+
+<body style="background-color:#FFA500;height:100%;padding-top:8px;">
+
+
+
+    <MudAppBar Elevation="0" Style="background-color:#FFA500;color:white">
+        <MudGrid>
+
+
+            <MudItem xs="7" style="display: flex; align-items: center;">
+                <!-- Profile Picture, Name, and Online Status -->
+                <MudIconButton OnClick="@(()=>naviagte.NavigateTo("/Retail_Chats"))" Style="color:white" Icon="@Icons.Material.Rounded.KeyboardBackspace" Edge="Edge.Start" />
+
+                <div style="margin-left: 10px; color: white;">
+                    <div style="font-weight: bold;">Coisa Computers </div>
+                </div>
+            </MudItem>
+
+            <MudItem xs="5" style="text-align: right;">
+                <MudImage ObjectFit="ObjectFit.Cover" style="margin-top:8px" Height="20" Width="25" Src="Gif/FLAG.gif" Alt="kili" />
+                <MudIconButton Style="margin-right:8px;color:white" Icon="@Icons.Material.Outlined.Share" />
+            </MudItem>
+        </MudGrid>
+    </MudAppBar>
+
+    @code {
+        // Logic to go back
+        private void GoBack()
+        {
+            // Implement navigation logic to go back to the previous page
+        }
+    }
+
+
+    <div style="background-color:white;border-top-left-radius:30px;border-top-right-radius:30px;height:100%;padding-top:8px">
+        <MudCardMedia Style="border-radius:16px" Image="https://c8.alamy.com/comp/CF4H1C/the-exterior-of-a-local-convenience-shop-british-food-wine-store-in-CF4H1C.jpg" Height="150" />
+
+        <div class="container-fluid">
+            <MudCardActions>
+                <div>
+                    <div style="font-size: small; color: gray;">Electronics  <MudIcon Color="Color.Info" Size="Size.Small" Icon="@Icons.Material.Filled.Verified"></MudIcon></div>
+
+                    <div Style="color:gray;font-size:small">   <MudIcon Size="Size.Small" Icon="@Icons.Material.Outlined.LocationOn"></MudIcon> Kericho.Kenya  </div>
+
+                </div>
+                <MudSpacer />
+                <div>
+                    <MudChip Size="Size.Small" T="string" Icon="@Icons.Material.Outlined.Star" Color="Color.Dark">4.8 (1K+ Reviews)</MudChip>
+
+                </div>
+
+            </MudCardActions>
+
+            <style>
+                .horizontal-container {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+            </style>
+
+
+            <MudGrid Style="">
+                <MudSpacer />
+                <MudItem xs="3">
+                    <div style="text-align:center">
+                        <MudAvatar Size="Size.Medium" Style="padding:8px;background-color:gainsboro">
+                            <MudIcon Icon="@Icons.Material.Outlined.ProductionQuantityLimits"></MudIcon>
+                        </MudAvatar>
+                        <MudText Typo="Typo.body1" Style="font-weight:bold">100+</MudText>
+                        <div style="font-size:small;color:gray;font-family:Arial">Products</div>
+                    </div>
+                </MudItem>
+                <MudSpacer />
+                <MudItem xs="3">
+                    <div style="text-align:center">
+                        <MudAvatar Size="Size.Medium" Style="padding:8px;background-color:gainsboro">
+                            <MudIcon Icon="@Icons.Material.Outlined.StarHalf"></MudIcon>
+
+                        </MudAvatar>
+                        <MudText Typo="Typo.body1" Style="font-weight:bold">4.9+</MudText>
+                        <div style="font-size:small;color:gray;font-family:Arial">Rating</div>
+                    </div>
+                </MudItem>
+                <MudSpacer />
+                <MudItem xs="3">
+                    <div style="text-align:center">
+                        <MudAvatar Size="Size.Medium" Style="padding:8px;background-color:gainsboro">
+                            <MudIcon Icon="@Icons.Material.Outlined.MarkUnreadChatAlt"></MudIcon>
+                        </MudAvatar>
+                        <MudText Typo="Typo.body1" Style="font-weight:bold">250+</MudText>
+                        <div style="font-size:small;color:gray;font-family:Arial">Reviews</div>
+                    </div>
+                </MudItem>
+            </MudGrid>
+
+        </div>
+        <style>
+            .hide-scrollbar {
+                overflow-x: auto;
+                white-space: nowrap;
+                scrollbar-width: none; /* For Firefox */
+            }
+
+                .hide-scrollbar::-webkit-scrollbar {
+                    display: none; /* For Chrome, Safari, Edge, and WebView */
+                }
+        </style>
+        <MudTabs Style="width:100%;margin-top:8px" Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+            <MudSpacer />
+            <MudTabPanel Style="min-width:50px;" Class="text-capitalize" Text="Products">
+            <Relay_Blazor_Hybrid.Pages.Shops.ShopAbout_Product.Products/>
+            </MudTabPanel>
+            <MudSpacer />
+            <MudTabPanel Style="min-width:50px" Class="text-capitalize" Text="About">
+<Relay_Blazor_Hybrid.Pages.Shops.ShopAbout_Product.About/>
+</MudTabPanel>
+            <MudSpacer />
+            <MudTabPanel Style="min-width:50px" Class="text-capitalize" Text="Gallery">
+<Relay_Blazor_Hybrid.Pages.Shops.ShopAbout_Product.Gallery/>
+</MudTabPanel>
+            <MudSpacer />
+            <MudTabPanel Style="min-width:50px" Class="text-capitalize" Text="Reviews">
+<Relay_Blazor_Hybrid.Pages.Shops.ShopAbout_Product.Reviews/>
+</MudTabPanel>
+        </MudTabs>
+
+    </div>
+
+</body>
+@code {
+    string TextValue { get; set; }
+
+}

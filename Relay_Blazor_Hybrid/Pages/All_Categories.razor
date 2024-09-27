@@ -1,0 +1,47 @@
+﻿@page "/All_Categories"
+@layout MainLayout
+
+<MudAppBar Elevation="0" Dense="true" Style="background-color:ghostwhite;padding-top:8px">
+
+    <MudIconButton OnClick="@(()=>naviagte.NavigateTo("/"))" Style="margin-right:8px" Icon="@Icons.Material.Rounded.KeyboardBackspace" Color="Color.Dark" Edge="Edge.End" />
+
+    <MudText Typo="Typo.h6" Color="Color.Dark">
+      Category
+    </MudText>
+    <MudSpacer />
+
+ <Relay_Blazor_Hybrid.Shared.notifications.Wishlistnotification />
+    <Relay_Blazor_Hybrid.Shared.notifications.Menu />    
+</MudAppBar>
+
+
+<div class="container-fluid">
+     <div style="margin-left:16px;margin-right:16px">
+        <MudTextField Placeholder="Search" Margin="Margin.Dense" T="string" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" Class="rounded-pill" />
+
+    </div>
+
+    <MudGrid Style="margin-top:8px">
+        @for (var i = 0; i < 10; i++)
+        {
+            <MudItem xs="3">
+                <div style="text-align:center">
+                    <MudAvatar Size="Size.Large" Style="padding:8px;background-color:gainsboro">
+                        <MudImage Src="https://clipart.info/images/ccovers/1516920571instagram-png-instagram-icon-1600x1600.png"></MudImage>
+                    </MudAvatar>
+                    <MudText Typo="Typo.body1">Electronics</MudText>
+                </div>
+            </MudItem>
+        }
+
+
+    </MudGrid>
+</div>
+
+
+
+
+<Relay_Blazor_Hybrid.Shared.bottomnavigation.Bottom_Main_App_Bar />
+@code {
+
+}

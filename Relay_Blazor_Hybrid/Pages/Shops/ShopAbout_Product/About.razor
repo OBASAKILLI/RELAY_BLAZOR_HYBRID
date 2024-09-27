@@ -1,0 +1,84 @@
+﻿
+<MudText Style="color:gray;" Typo="Typo.body1">About </MudText>
+
+<div style="font-size:small;color:gray;font-family:Arial">
+    To create a MudTabPanel using MudBlazor with a proper layout and content, you can enhance your existing markup.
+    Here's an example that demonstrates how to create a MudTabPanel with multiple tabs, including the Products tab you mentioned,
+    along with some additional configuration and content.
+</div>
+
+<style>
+    .horizontal-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+</style>
+
+<MudText Style="color:gray;margin-top:8px" Typo="Typo.body1">Seller Contact </MudText>
+
+<div class="horizontal-container">
+    <MudAvatar Size="Size.Medium" Color="Color.Primary">I</MudAvatar>
+    <div style="width:100%;">
+
+        <div class="horizontal-container">
+            <div>
+                <MudText Style="color:black" Typo="Typo.h6">Iconic Connie </MudText>
+                <MudText Typo="Typo.body2" Style="color:gray">Manager </MudText>
+            </div>
+            <MudSpacer />
+            <MudIconButton Icon="@Icons.Material.Outlined.MarkUnreadChatAlt" Style="margin:4px" Size="Size.Small"></MudIconButton>
+            <MudIconButton Icon="@Icons.Material.Filled.LocalPhone" Style="margin:4px" Size="Size.Small"></MudIconButton>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+<MudText Style="color:gray;margin-top:12px" Typo="Typo.body1">Opening Hours </MudText>
+<hr />
+                <table class=" table-sm" style="width:100%">
+                    <tr style="color:gray;font-family:Calibri">
+                        <td>
+                            Monday
+                        </td>
+                        <td>
+                            07:00-19:00
+                        </td>
+                    </tr>
+                    <tr style="color:gray;font-family:Calibri">
+                        <td>
+                            Tuesday
+                        </td>
+                        <td>
+                            07:00-19:00
+                        </td>
+                    </tr>
+                    <tr style="color:gray;font-family:Calibri">
+                        <td>
+                            Wednesday
+                        </td>
+                        <td>
+                            07:00-19:00
+                        </td>
+                    </tr>
+                    <tr style="color:gray;font-family:Calibri">
+                        <td>
+                            Thursday
+                        </td>
+                        <td>
+                            07:00-19:00
+                        </td>
+                    </tr>
+                    <tr style="color:gray;font-family:Calibri">
+                        <td>
+                            Friday
+                        </td>
+                        <td>
+                            07:00-19:00
+                        </td>
+                    </tr>
+                </table>

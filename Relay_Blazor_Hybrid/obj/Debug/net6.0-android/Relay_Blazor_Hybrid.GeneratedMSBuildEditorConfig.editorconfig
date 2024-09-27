@@ -36,6 +36,13 @@ build_metadata.AdditionalFiles.TargetPath = TWFpbi5yYXpvcg==
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/All_Categories.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxsX0NhdGVnb3JpZXMucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/Connects.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
@@ -187,6 +194,41 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvcHNcUmV0YWlsX1NldHRpbmdzLnJhem9y
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/Shops/Retail_Shop_Details.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvcHNcUmV0YWlsX1Nob3BfRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/Shops/ShopAbout_Product/About.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvcHNcU2hvcEFib3V0X1Byb2R1Y3RcQWJvdXQucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/Shops/ShopAbout_Product/Gallery.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvcHNcU2hvcEFib3V0X1Byb2R1Y3RcR2FsbGVyeS5yYXpvcg==
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/Shops/ShopAbout_Product/Products.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvcHNcU2hvcEFib3V0X1Byb2R1Y3RcUHJvZHVjdHMucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PROJECTS/Relay_Blazor_Hybrid/Relay_Blazor_Hybrid/Pages/Shops/ShopAbout_Product/Reviews.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvcHNcU2hvcEFib3V0X1Byb2R1Y3RcUmV2aWV3cy5yYXpvcg==
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = 
 

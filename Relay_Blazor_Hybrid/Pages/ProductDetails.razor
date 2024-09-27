@@ -16,7 +16,7 @@
         <MudIconButton Icon="@Icons.Material.Filled.FavoriteBorder" Color="Color.Dark" Edge="Edge.Start" />
         <Relay_Blazor_Hybrid.Shared.notifications.Menu />
     </MudAppBar>
-    <MudCard Elevation="0" Style="background-color:transparent">
+    <MudCard Elevation="0" @onclick="@(()=>naviagte.NavigateTo("/Retail_Shop_Details"))" Style="background-color:transparent">
         <MudCardHeader>
             <CardHeaderAvatar>
 

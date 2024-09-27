@@ -1,0 +1,41 @@
+﻿<div class="row">
+    <div class="col-6">
+        <MudText Style="color:gray;" Typo="Typo.body1">Categories </MudText>
+    </div>
+    <div class="col-6">       
+            <MudText style="text-align:end;color:cornflowerblue">
+                See all
+            </MudText>      
+    </div>
+</div>
+
+<div style="overflow-x: auto; white-space: nowrap;" class="hide-scrollbar">
+    @for (var i = 0; i < 10; i++)
+    {
+        <MudChip T="string" Style="margin-right:8px" Variant="Variant.Text">Default</MudChip>
+    }
+</div>
+
+<MudGrid Style="margin-top:8px">
+    @for (var i = 0; i < 10; i++)
+    {
+        <MudItem xs="6">
+            <MudCard @onclick="@(()=>naviagte.NavigateTo("/ProductDetails"))" Style="height:200px;border-radius:14px" Elevation="25">
+
+                <MudCardMedia Image="https://png.pngtree.com/png-vector/20230501/ourmid/pngtree-sneakers-running-shoes-trendy-shoe-shapes-png-image_7078175.png" Height="100" />
+
+                <MudCardContent>
+
+
+                    <MudText Typo="Typo.h6">KES 1,200</MudText>
+                    <MudText Typo="Typo.body2" Style="color:gray">Nike Lebron 8</MudText>
+
+
+                </MudCardContent>
+
+            </MudCard>
+        </MudItem>
+    }
+
+
+</MudGrid>
