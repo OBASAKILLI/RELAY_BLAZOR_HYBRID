@@ -1,0 +1,55 @@
+﻿@page "/"
+@using API_PROJECT.Models
+@inject HttpClient Http
+
+<h3>Categories</h3>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert alert-warning">@message</div> <!-- Display the message -->
+}
+else if (myDataList != null && myDataList.Any())
+{
+    <ul>
+        @foreach (var user in myDataList)
+        {
+            <li>@user.Category</li> <!-- Adjust according to your Users model properties -->
+        }
+    </ul>
+}
+else
+{
+    <p>Loading...</p> <!-- Optional loading message -->
+}
+
+@code {
+    private List<Categories> myDataList = new List<Categories>();
+    private string message=string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try{
+            var response = await Http.GetAsync("https://localhost:7016/api/Categories");
+
+            if (response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    myDataList = await response.Content.ReadFromJsonAsync<List<Categories>>();
+                 
+
+                }
+                else
+                {
+                    message = "emplty list";
+                }
+            }
+            else
+            {
+                message = "Something went wrong"; // Read the message for 404
+            }
+        }catch(Exception ex){
+            message = ex.Message;
+        }
+    }
+}

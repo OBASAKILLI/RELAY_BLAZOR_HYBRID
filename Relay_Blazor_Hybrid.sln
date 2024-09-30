@@ -4,7 +4,9 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Relay_Blazor_Hybrid", "Relay_Blazor_Hybrid\Relay_Blazor_Hybrid.csproj", "{9EA2558C-271A-4AB9-96C7-392C35589F6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_PROJECT", "API_PROJECT\API_PROJECT.csproj", "{4F828230-7834-4305-96B6-9FD81749ABA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_PROJECT", "API_PROJECT\API_PROJECT.csproj", "{4F828230-7834-4305-96B6-9FD81749ABA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEB_APP", "WEB_APP\WEB_APP.csproj", "{AC0505F5-01CC-40C0-A0A6-587EC348DB8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +24,10 @@ Global
 		{4F828230-7834-4305-96B6-9FD81749ABA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F828230-7834-4305-96B6-9FD81749ABA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F828230-7834-4305-96B6-9FD81749ABA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC0505F5-01CC-40C0-A0A6-587EC348DB8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC0505F5-01CC-40C0-A0A6-587EC348DB8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC0505F5-01CC-40C0-A0A6-587EC348DB8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC0505F5-01CC-40C0-A0A6-587EC348DB8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

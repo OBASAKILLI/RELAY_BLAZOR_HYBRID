@@ -24,31 +24,50 @@ namespace API_PROJECT.Controllers
 
         // GET: api/Ads
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Ads>>> Getads()
+        public async Task<ActionResult> GetAds()
         {
-          if (_context.ads == null)
-          {
-              return NotFound();
-          }
-            return await _context.ads.GetAll();
+            try
+            {
+                var ads = await _context.ads.GetAll();
+              
+                if (ads == null || !ads.Any())
+                {
+                    return NoContent();
+                }
+
+                return Ok(ads);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+           
+
         }
 
         // GET: api/Ads/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Ads>> GetAds(string id)
+        public async Task<ActionResult> GetAds(string id)
         {
-          if (_context.ads == null)
-          {
-              return NotFound();
-          }
-            var ads = await _context.ads.GetById(id);
+            try {
+                if (_context.ads == null)
+                {
+                    return NotFound();
+                }
+                var ads = await _context.ads.GetById(id);
 
-            if (ads == null)
-            {
-                return NotFound();
+                if (ads == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(ads);
             }
-
-            return ads;
+            catch(Exception ex)
+            {
+                 return BadRequest(ex.Message);
+            }
+         
         }
 
         // PUT: api/Ads/5
@@ -61,8 +80,6 @@ namespace API_PROJECT.Controllers
                 return BadRequest();
             }
           
-           
-
             try
             {
                 await _context.ads.Update(ads);
@@ -70,14 +87,14 @@ namespace API_PROJECT.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-               
+                return BadRequest();
             }
 
             return NoContent();
         }
 
         // POST: api/Ads
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+      
         [HttpPost]
         public async Task<ActionResult<Ads>> PostAds(Ads ads)
         {
@@ -85,10 +102,18 @@ namespace API_PROJECT.Controllers
           {
               return Problem("Entity set 'AppDbContext.ads'  is null.");
           }
-            await _context.ads.AddNew(ads);
-             _context.save();
+            try
+            {
+                await _context.ads.AddNew(ads);
+                _context.save();
 
-            return CreatedAtAction("GetAds", new { id = ads.strId }, ads);
+                return CreatedAtAction("GetAds", new { id = ads.strId }, ads);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
+          
         }
 
         // DELETE: api/Ads/5
@@ -99,18 +124,24 @@ namespace API_PROJECT.Controllers
             {
                 return NotFound();
             }
-            var ads = await _context.ads.GetById(id);
-            if (ads == null)
-            {
-                return NotFound();
+            try {
+                var ads = await _context.ads.GetById(id);
+                if (ads == null)
+                {
+                    return NotFound();
+                }
+
+                await _context.ads.Remove(ads);
+                _context.save();
+
+                return NoContent();
             }
+            catch(Exception ex)
+            {
+                return BadRequest();
 
-            await _context.ads.Remove(ads);
-             _context.save();
-
-            return NoContent();
+            }
+           
         }
-
-       
     }
 }
