@@ -17,129 +17,126 @@ namespace API_PROJECT.Controllers
                 _context = context;
             }
 
-            // GET: api/Users
-            [HttpGet]
-            public async Task<ActionResult> GetUsers()
+
+        // GET: api/Users
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
+        {
+            try
             {
-                try
-                {
-                    var Users = await _context.users.GetAll();
+                var Users = await _context.users.GetAll();
 
-                    if (Users == null || !Users.Any())
-                    {
-                        return NoContent();
-                    }
-
-                    return Ok(Users);
-                }
-                catch (Exception ex)
+                if (Users == null || !Users.Any())
                 {
-                    return BadRequest(ex.Message);
+                    return NoContent();
                 }
 
-
+                return Ok(Users);
             }
-
-            // GET: api/Users/5
-            [HttpGet("{id}")]
-            public async Task<ActionResult> GetUsers(string id)
+            catch (Exception ex)
             {
-                try
-                {
-                    if (_context.users == null)
-                    {
-                        return NotFound();
-                    }
-                    var Users = await _context.users.GetById(id);
 
-                    if (Users == null)
-                    {
-                        return NotFound();
-                    }
-
-                    return Ok(Users);
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
-
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while retrieving the Users.");
             }
+        }
 
-            // PUT: api/Users/5
-            // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-            [HttpPut("{id}")]
-            public async Task<IActionResult> PutUsers(string id, Users Users)
+
+        // GET: api/Users/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetUsers(string id)
+        {
+            try
             {
-                if (id != Users.strId)
-                {
-                    return BadRequest();
-                }
 
-                try
-                {
-                    await _context.users.Update(Users);
-                    _context.save();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return BadRequest();
-                }
+                var Users = await _context.users.GetById(id);
 
-                return NoContent();
-            }
-
-            // POST: api/Users
-
-            [HttpPost]
-            public async Task<ActionResult<Users>> PostUsers(Users Users)
-            {
-                if (_context.users == null)
-                {
-                    return Problem("Entity set 'AppDbContext.Users'  is null.");
-                }
-                try
-                {
-                    await _context.users.AddNew(Users);
-                    _context.save();
-
-                    return CreatedAtAction("GetUsers", new { id = Users.strId }, Users);
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest();
-                }
-
-            }
-
-            // DELETE: api/Users/5
-            [HttpDelete("{id}")]
-            public async Task<IActionResult> DeleteUsers(string id)
-            {
-                if (_context.users == null)
+                if (Users == null)
                 {
                     return NotFound();
                 }
-                try
+
+                return Ok(Users);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data: " + ex.Message);
+            }
+
+        }
+
+        // PUT: api/Users/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutUsers(string id, [FromBody] Users updatedCategory)
+        {
+            if (updatedCategory == null)
+            {
+                return BadRequest("Invalid category data.");
+            }
+
+            if (id != updatedCategory.strId)
+            {
+                return BadRequest("Category ID mismatch.");
+            }
+
+            try
+            {
+                await _context.users.Update(updatedCategory);
+                _context.save();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data: " + ex.Message);
+            }
+
+            return NoContent();
+        }
+
+        // POST: api/Users
+
+        [HttpPost]
+        public async Task<ActionResult> PostCategory([FromBody] Users Users)
+        {
+            if (Users == null)
+            {
+                return BadRequest("Invalid category data.");
+            }
+            try
+            {
+                await _context.users.AddNew(Users);
+                _context.save();
+                return CreatedAtAction("GetUsers", new { id = Users.strId }, Users);
+
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error saving data.");
+
+            }
+
+        }
+
+        // DELETE: api/Users/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteCategory(string id)
+        {
+            try
+            {
+                var existingCategory = await _context.users.GetById(id);
+                if (existingCategory == null)
                 {
-                    var Users = await _context.users.GetById(id);
-                    if (Users == null)
-                    {
-                        return NotFound();
-                    }
-
-                    await _context.users.Remove(Users);
-                    _context.save();
-
-                    return NoContent();
+                    return NotFound();
                 }
-                catch (Exception ex)
-                {
-                    return BadRequest();
-
-                }
-
+                await _context.users.Remove(existingCategory);
+                _context.save();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data: " + ex.Message);
             }
         }
 
     }
+}

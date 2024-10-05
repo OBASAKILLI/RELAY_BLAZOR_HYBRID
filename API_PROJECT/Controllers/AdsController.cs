@@ -24,124 +24,123 @@ namespace API_PROJECT.Controllers
 
         // GET: api/Ads
         [HttpGet]
-        public async Task<ActionResult> GetAds()
+        public async Task<ActionResult<IEnumerable<Ads>>> GetAds()
         {
             try
             {
-                var ads = await _context.ads.GetAll();
-              
-                if (ads == null || !ads.Any())
+                var Ads = await _context.ads.GetAll();
+
+                if (Ads == null || !Ads.Any())
                 {
                     return NoContent();
                 }
 
-                return Ok(ads);
+                return Ok(Ads);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return BadRequest(ex.Message);
-            }
-           
 
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while retrieving the Ads.");
+            }
         }
+
 
         // GET: api/Ads/5
         [HttpGet("{id}")]
         public async Task<ActionResult> GetAds(string id)
         {
-            try {
-                if (_context.ads == null)
-                {
-                    return NotFound();
-                }
-                var ads = await _context.ads.GetById(id);
-
-                if (ads == null)
-                {
-                    return NotFound();
-                }
-
-                return Ok(ads);
-            }
-            catch(Exception ex)
+            try
             {
-                 return BadRequest(ex.Message);
+
+                var Ads = await _context.ads.GetById(id);
+
+                if (Ads == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(Ads);
             }
-         
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data: " + ex.Message);
+            }
+
         }
 
         // PUT: api/Ads/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAds(string id, Ads ads)
+        public async Task<IActionResult> PutAds(string id, [FromBody] Ads updatedCategory)
         {
-            if (id != ads.strId)
+            if (updatedCategory == null)
             {
-                return BadRequest();
+                return BadRequest("Invalid category data.");
             }
-          
+
+            if (id != updatedCategory.strId)
+            {
+                return BadRequest("Category ID mismatch.");
+            }
+
             try
             {
-                await _context.ads.Update(ads);
-                 _context.save();
+                await _context.ads.Update(updatedCategory);
+                _context.save();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data: " + ex.Message);
             }
 
             return NoContent();
         }
 
         // POST: api/Ads
-      
+
         [HttpPost]
-        public async Task<ActionResult<Ads>> PostAds(Ads ads)
+        public async Task<ActionResult> PostCategory([FromBody] Ads Ads)
         {
-          if (_context.ads == null)
-          {
-              return Problem("Entity set 'AppDbContext.ads'  is null.");
-          }
+            if (Ads == null)
+            {
+                return BadRequest("Invalid category data.");
+            }
             try
             {
-                await _context.ads.AddNew(ads);
+                await _context.ads.AddNew(Ads);
                 _context.save();
+                return CreatedAtAction("GetAds", new { id = Ads.strId }, Ads);
 
-                return CreatedAtAction("GetAds", new { id = ads.strId }, ads);
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error saving data.");
+
             }
-          
+
         }
 
         // DELETE: api/Ads/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAds(string id)
+        public async Task<ActionResult> DeleteCategory(string id)
         {
-            if (_context.ads == null)
+            try
             {
-                return NotFound();
-            }
-            try {
-                var ads = await _context.ads.GetById(id);
-                if (ads == null)
+                var existingCategory = await _context.ads.GetById(id);
+                if (existingCategory == null)
                 {
                     return NotFound();
                 }
-
-                await _context.ads.Remove(ads);
+                await _context.ads.Remove(existingCategory);
                 _context.save();
-
                 return NoContent();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return BadRequest();
-
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data: " + ex.Message);
             }
-           
         }
+
     }
 }

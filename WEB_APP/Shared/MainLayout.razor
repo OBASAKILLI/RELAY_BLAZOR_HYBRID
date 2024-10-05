@@ -1,19 +1,186 @@
 ﻿@inherits LayoutComponentBase
+@*@inject Relay_Blazor_Hybrid.Utils.ScreenSizeService ScreenSizeService*@
+<PageTitle>Relay</PageTitle>
 
-<PageTitle>WEB_APP</PageTitle>
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
+        <MudThemeProvider />
+        <MudDialogProvider />
+        <MudSnackbarProvider />
 
-        <article class="content px-4">
-            @Body
-        </article>
+        <MudLayout>
+            <MudAppBar Elevation="1" Dense="true" Style="background-color:#273A56">
+                <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+                <MudSpacer />
+
+                <MudMenu>
+                    <ActivatorContent>
+                        <MudAvatar>
+                            <MudAvatar Style="@Smallavaterstyle">@FirstLeter</MudAvatar>
+                        </MudAvatar>
+                        <MudText Style="margin-top:6px;margin-left:8px">@name</MudText>
+                    </ActivatorContent>
+                    <ChildContent>
+
+                        <MudPaper Width="300px" Square="true" Elevation="0">
+                            <MudList T="string" Dense="true">
+                                <div style="text-align:center">
+
+                                    <MudAvatar Style="@avaterstyle">@FirstLeter</MudAvatar>
+
+                                    <MudText Typo="Typo.h5" Class="px-4 mt-3 text-capitalize">@name</MudText>
+                                    <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">@email</MudText>
+                                </div>
+                                <MudDivider Style="margin-top:8px" />
+                                <MudListItem Text="My Profile" Icon="@Icons.Material.Outlined.AccountCircle" />
+                                <MudListItem Text="My Inbox" Icon="@Icons.Material.Outlined.Inbox" />
+                                <MudDivider />
+
+                                <MudListItem Style="Color:red" Text="Log Out" OnClick="LogOut" IconColor="Color.Error" Icon="@Icons.Material.Filled.Logout" />
+                            </MudList>
+                        </MudPaper>
+
+                    </ChildContent>
+                </MudMenu>
+            </MudAppBar>
+            <MudDrawer @bind-Open="@open" ClipMode="clipMode" Breakpoint="@breakpoint" PreserveOpenState="@preserveOpenState" Elevation="1" Variant="@DrawerVariant.Mini">
+              
+                <NavMenu />
+            </MudDrawer>
+            <MudMainContent Class="pt-12 px-0">
+                <CascadingValue Value="this">
+                    <CascadingValue Value="deviceCategory">
+                    <body style="background-color:ghostwhite;font-family:Calibri" class="content px-0">
+                        @Body
+                    </body>
+                </CascadingValue>
+                </CascadingValue>
+            </MudMainContent>
+        </MudLayout>
+
+
+
     </main>
 </div>
+
+
+
+<MudMessageBox @ref="mbox" Title="Warning!!." CancelText="Cancel ">
+
+    <MessageContent>
+        <MudAlert Severity="Severity.Error">
+            You are about to log out. Would you like to continue?
+        </MudAlert>
+
+    </MessageContent>
+    <YesButton>
+        <MudButton Variant="Variant.Filled" Class="text-capitalize" Color="Color.Error" EndIcon="@Icons.Material.Outlined.Logout"> Log Out!</MudButton>
+    </YesButton>
+</MudMessageBox>
+
+
+
+@code {
+    bool open = true;
+    string avaterstyle = "";
+    string Smallavaterstyle = "";
+    string name = "n/a";
+    string FirstLeter = "";
+    string email = "n/a";
+    string color = "";
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        //name = await unitOfWork.Get_LoggedIn_User.UserFullName();
+        //FirstLeter = unitOfWork.icolorCodes.GetFirstLetter(name);
+        //email = await unitOfWork.Get_LoggedIn_User.UserEmail();
+        //color = unitOfWork.icolorCodes.GetColorCode_string();
+        avaterstyle = $"background-color:{color}; height:70px; width:70px; font-size:2rem;color:white";
+
+        Smallavaterstyle = $"background-color:{color};border:solid 1px white;color:white";
+    }
+    bool preserveOpenState = false;
+    Breakpoint breakpoint = Breakpoint.Lg;
+    DrawerClipMode clipMode = DrawerClipMode.Never;
+
+    void ToggleDrawer()
+    {
+        open = !open;
+    }
+
+
+
+
+    MudMessageBox mbox { get; set; }
+    public async Task LogOut()
+    {
+        bool? result = await mbox.Show();
+        if (result != null)
+        {
+            //  unitOfWork.Get_LoggedIn_User.LogOut();
+            naviagte.NavigateTo("/", true);
+        }
+        StateHasChanged();
+    }
+
+}
+<MudOverlay @bind-Visible="visible" LightBackground="true" AutoClose="false" ZIndex="9999">
+
+    <MudCard Elevation="0">
+        <MudCardActions>
+            <MudProgressCircular Color="Color.Warning" Indeterminate="true" />
+            <MudText Typo="Typo.h6" Color="Color.Warning" Style="margin-left:24px">Loading...</MudText>
+        </MudCardActions>
+    </MudCard>
+</MudOverlay>
+
+    @code {
+    private bool visible;
+
+    public void OpenLoading()
+    {
+        visible = true;
+        StateHasChanged();
+    }
+    public void CloseLoading()
+    {
+        visible = false;
+        StateHasChanged();
+    }
+    }
+
+
+
+@code {
+    public string deviceCategory;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+
+            //deviceCategory = await ScreenSizeService.GetDeviceCategoryAsync();
+            //ScreenSizeService.OnResize += HandleResize;
+
+            //await ScreenSizeService.RegisterResizeHandlerAsync();
+
+            StateHasChanged(); // Trigger a re-render to update the UI
+        }
+    }
+
+    private void HandleResize(string newCategory)
+    {
+        deviceCategory = newCategory;
+        InvokeAsync(StateHasChanged); // Update the UI when screen size changes
+    }
+
+    public void Dispose()
+    {
+       // ScreenSizeService.OnResize -= HandleResize;
+    }
+}

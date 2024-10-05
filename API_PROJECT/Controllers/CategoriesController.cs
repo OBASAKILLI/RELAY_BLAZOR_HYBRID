@@ -7,7 +7,7 @@ namespace API_PROJECT.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesController:ControllerBase
+    public class CategoriesController : ControllerBase
     {
         private readonly IUnitOfWork _context;
 
@@ -18,26 +18,26 @@ namespace API_PROJECT.Controllers
 
         // GET: api/Categories
         [HttpGet]
-        public async Task<ActionResult> GetCategories()
+        public async Task<ActionResult<IEnumerable<Categories>>> GetCategories()
         {
             try
             {
-                var Categories = await _context.categories.GetAll();
+                var categories = await _context.categories.GetAll();
 
-                if (Categories == null || !Categories.Any())
+                if (categories == null || !categories.Any())
                 {
                     return NoContent();
                 }
 
-                return Ok(Categories);
+                return Ok(categories);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while retrieving the categories.");
             }
-
-
         }
+
 
         // GET: api/Categories/5
         [HttpGet("{id}")]
@@ -45,10 +45,7 @@ namespace API_PROJECT.Controllers
         {
             try
             {
-                if (_context.categories == null)
-                {
-                    return NotFound();
-                }
+               
                 var Categories = await _context.categories.GetById(id);
 
                 if (Categories == null)
@@ -60,7 +57,7 @@ namespace API_PROJECT.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data: " + ex.Message);
             }
 
         }
@@ -68,21 +65,26 @@ namespace API_PROJECT.Controllers
         // PUT: api/Categories/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategories(string id, Categories Categories)
+        public async Task<IActionResult> PutCategories(string id, [FromBody] Categories updatedCategory)
         {
-            if (id != Categories.strId)
+            if (updatedCategory == null)
             {
-                return BadRequest();
+                return BadRequest("Invalid category data.");
+            }
+
+            if (id != updatedCategory.strId)
+            {
+                return BadRequest("Category ID mismatch.");
             }
 
             try
             {
-                await _context.categories.Update(Categories);
+                await _context.categories.Update(updatedCategory);
                 _context.save();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data: " + ex.Message);
             }
 
             return NoContent();
@@ -91,53 +93,47 @@ namespace API_PROJECT.Controllers
         // POST: api/Categories
 
         [HttpPost]
-        public async Task<ActionResult<Categories>> PostCategories(Categories Categories)
+        public async Task<ActionResult> PostCategory([FromBody] Categories Categories)
         {
-            if (_context.categories == null)
+            if (Categories == null)
             {
-                return Problem("Entity set 'AppDbContext.Categories'  is null.");
+                return BadRequest("Invalid category data.");
             }
             try
             {
-                await _context.categories.AddNew(Categories);
-                _context.save();
+            await _context.categories.AddNew(Categories);
+            _context.save();
+            return CreatedAtAction("GetCategories", new { id = Categories.strId }, Categories);
 
-                return CreatedAtAction("GetCategories", new { id = Categories.strId }, Categories);
+
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error saving data.");
+
             }
 
         }
 
         // DELETE: api/Categories/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategories(string id)
+        public async Task<ActionResult> DeleteCategory(string id)
         {
-            if (_context.categories == null)
-            {
-                return NotFound();
-            }
             try
             {
-                var Categories = await _context.categories.GetById(id);
-                if (Categories == null)
+                var existingCategory = await _context.categories.GetById(id);
+                if (existingCategory == null)
                 {
                     return NotFound();
                 }
-
-                await _context.categories.Remove(Categories);
+                await _context.categories.Remove(existingCategory);
                 _context.save();
-
                 return NoContent();
             }
             catch (Exception ex)
             {
-                return BadRequest();
-
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data: " + ex.Message);
             }
-
         }
     }
 

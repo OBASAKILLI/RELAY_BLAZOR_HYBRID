@@ -943,6 +943,69 @@
     <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\facebook.png">
       <PackagePath>wwwroot\Images\facebook.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos.html">
+      <PackagePath>wwwroot\Images\Photos - Google Photos.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\app.html">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\app.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\bscframe.html">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\bscframe.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\cb=gapi%281%29.loaded_0">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\cb=gapi%281%29.loaded_0</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\cb=gapi.loaded_0">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\cb=gapi.loaded_0</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\cb=gapi.loaded_1">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\cb=gapi.loaded_1</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\css2">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\css2</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\googleapis.proxy.js.download">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\googleapis.proxy.js.download</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\lazy.min.js.download">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\lazy.min.js.download</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\m=_b,_tp">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\m=_b,_tp</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\m=_b,_tp%281%29">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\m=_b,_tp%281%29</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\m=hfcr">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\m=hfcr</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\photo.jpg">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\photo.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\proxy.html">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\proxy.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\RotateCookiesPage.html">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\RotateCookiesPage.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\rs=AA2YrTsVA9_hKyGtH1-UzkVaxmvYQjNv7Q">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\rs=AA2YrTsVA9_hKyGtH1-UzkVaxmvYQjNv7Q</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\rs=AA2YrTvCjRZ-bRAiOPLLf0QdNwYcTlfNSg">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\rs=AA2YrTvCjRZ-bRAiOPLLf0QdNwYcTlfNSg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\saved_resource.html">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\saved_resource.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\ServiceLogin.html">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\ServiceLogin.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\unnamed%281%29.jpg">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\unnamed%281%29.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\Photos - Google Photos_files\unnamed.jpg">
+      <PackagePath>wwwroot\Images\Photos - Google Photos_files\unnamed.jpg</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\wwwroot\Images\search.png">
       <PackagePath>wwwroot\Images\search.png</PackagePath>
     </AppxPackagedFile>

@@ -1,15 +1,16 @@
+using API_PROJECT.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using WEB_APP.Data;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddHttpClient();
-
+builder.Services.AddMudServices();
+builder.Services.AddScoped<URLs>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

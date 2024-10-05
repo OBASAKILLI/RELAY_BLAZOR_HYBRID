@@ -8,7 +8,7 @@ namespace API_PROJECT.Models
         [Key]
         [MaxLength(50)]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public string strId { get; set; }
+        public string strId { get; set; } = Guid.NewGuid().ToString();
         [Required(ErrorMessage = "Required Field")]
         public string Category { get; set; } = string.Empty;
         [Required(ErrorMessage = "Required Field")]

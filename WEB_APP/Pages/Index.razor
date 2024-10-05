@@ -4,27 +4,10 @@
 
 <h3>Categories</h3>
 
-@if (!string.IsNullOrEmpty(message))
-{
-    <div class="alert alert-warning">@message</div> <!-- Display the message -->
-}
-else if (myDataList != null && myDataList.Any())
-{
-    <ul>
-        @foreach (var user in myDataList)
-        {
-            <li>@user.Category</li> <!-- Adjust according to your Users model properties -->
-        }
-    </ul>
-}
-else
-{
-    <p>Loading...</p> <!-- Optional loading message -->
-}
+
 
 @code {
     private List<Categories> myDataList = new List<Categories>();
-    private string message=string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
@@ -36,20 +19,21 @@ else
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     myDataList = await response.Content.ReadFromJsonAsync<List<Categories>>();
-                 
+
 
                 }
                 else
                 {
-                    message = "emplty list";
+                    Snackbar.Add("emplty list", Severity.Error);
+                   
                 }
             }
             else
             {
-                message = "Something went wrong"; // Read the message for 404
+                Snackbar.Add("Something went wrong", Severity.Error);
             }
         }catch(Exception ex){
-            message = ex.Message;
+            Snackbar.Add(ex.Message, Severity.Error);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace API_PROJECT.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult> GetProducts()
+        public async Task<ActionResult<IEnumerable<Products>>> GetProducts()
         {
             try
             {
@@ -34,11 +34,11 @@ namespace API_PROJECT.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while retrieving the Products.");
             }
-
-
         }
+
 
         // GET: api/Products/5
         [HttpGet("{id}")]
@@ -46,10 +46,7 @@ namespace API_PROJECT.Controllers
         {
             try
             {
-                if (_context.products == null)
-                {
-                    return NotFound();
-                }
+
                 var Products = await _context.products.GetById(id);
 
                 if (Products == null)
@@ -61,7 +58,7 @@ namespace API_PROJECT.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data: " + ex.Message);
             }
 
         }
@@ -69,21 +66,26 @@ namespace API_PROJECT.Controllers
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProducts(string id, Products Products)
+        public async Task<IActionResult> PutProducts(string id, [FromBody] Products updatedCategory)
         {
-            if (id != Products.strId)
+            if (updatedCategory == null)
             {
-                return BadRequest();
+                return BadRequest("Invalid category data.");
+            }
+
+            if (id != updatedCategory.strId)
+            {
+                return BadRequest("Category ID mismatch.");
             }
 
             try
             {
-                await _context.products.Update(Products);
+                await _context.products.Update(updatedCategory);
                 _context.save();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data: " + ex.Message);
             }
 
             return NoContent();
@@ -92,55 +94,48 @@ namespace API_PROJECT.Controllers
         // POST: api/Products
 
         [HttpPost]
-        public async Task<ActionResult<Products>> PostProducts(Products Products)
+        public async Task<ActionResult> PostCategory([FromBody] Products Products)
         {
-            if (_context.products == null)
+            if (Products == null)
             {
-                return Problem("Entity set 'AppDbContext.Products'  is null.");
+                return BadRequest("Invalid category data.");
             }
             try
             {
                 await _context.products.AddNew(Products);
                 _context.save();
-
                 return CreatedAtAction("GetProducts", new { id = Products.strId }, Products);
+
+
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error saving data.");
+
             }
 
         }
 
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProducts(string id)
+        public async Task<ActionResult> DeleteCategory(string id)
         {
-            if (_context.products == null)
-            {
-                return NotFound();
-            }
             try
             {
-                var Products = await _context.products.GetById(id);
-                if (Products == null)
+                var existingCategory = await _context.products.GetById(id);
+                if (existingCategory == null)
                 {
                     return NotFound();
                 }
-
-                await _context.products.Remove(Products);
+                await _context.products.Remove(existingCategory);
                 _context.save();
-
                 return NoContent();
             }
             catch (Exception ex)
             {
-                return BadRequest();
-
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data: " + ex.Message);
             }
-
         }
+
     }
-
 }
-

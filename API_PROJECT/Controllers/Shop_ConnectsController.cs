@@ -20,7 +20,7 @@ namespace API_PROJECT.Controllers
 
         // GET: api/Shop_Connects
         [HttpGet]
-        public async Task<ActionResult> GetShop_Connects()
+        public async Task<ActionResult<IEnumerable<Shop_Connects>>> GetShop_Connects()
         {
             try
             {
@@ -35,11 +35,11 @@ namespace API_PROJECT.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while retrieving the Shop_Connects.");
             }
-
-
         }
+
 
         // GET: api/Shop_Connects/5
         [HttpGet("{id}")]
@@ -47,10 +47,7 @@ namespace API_PROJECT.Controllers
         {
             try
             {
-                if (_context.shop_Connects == null)
-                {
-                    return NotFound();
-                }
+
                 var Shop_Connects = await _context.shop_Connects.GetById(id);
 
                 if (Shop_Connects == null)
@@ -62,7 +59,7 @@ namespace API_PROJECT.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data: " + ex.Message);
             }
 
         }
@@ -70,21 +67,26 @@ namespace API_PROJECT.Controllers
         // PUT: api/Shop_Connects/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutShop_Connects(string id, Shop_Connects Shop_Connects)
+        public async Task<IActionResult> PutShop_Connects(string id, [FromBody] Shop_Connects updatedCategory)
         {
-            if (id != Shop_Connects.strId)
+            if (updatedCategory == null)
             {
-                return BadRequest();
+                return BadRequest("Invalid category data.");
+            }
+
+            if (id != updatedCategory.strId)
+            {
+                return BadRequest("Category ID mismatch.");
             }
 
             try
             {
-                await _context.shop_Connects.Update(Shop_Connects);
+                await _context.shop_Connects.Update(updatedCategory);
                 _context.save();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data: " + ex.Message);
             }
 
             return NoContent();
@@ -93,56 +95,48 @@ namespace API_PROJECT.Controllers
         // POST: api/Shop_Connects
 
         [HttpPost]
-        public async Task<ActionResult<Shop_Connects>> PostShop_Connects(Shop_Connects Shop_Connects)
+        public async Task<ActionResult> PostCategory([FromBody] Shop_Connects Shop_Connects)
         {
-            if (_context.shop_Connects == null)
+            if (Shop_Connects == null)
             {
-                return Problem("Entity set 'AppDbContext.Shop_Connects'  is null.");
+                return BadRequest("Invalid category data.");
             }
             try
             {
                 await _context.shop_Connects.AddNew(Shop_Connects);
                 _context.save();
-
                 return CreatedAtAction("GetShop_Connects", new { id = Shop_Connects.strId }, Shop_Connects);
+
+
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error saving data.");
+
             }
 
         }
 
         // DELETE: api/Shop_Connects/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteShop_Connects(string id)
+        public async Task<ActionResult> DeleteCategory(string id)
         {
-            if (_context.shop_Connects == null)
-            {
-                return NotFound();
-            }
             try
             {
-                var Shop_Connects = await _context.shop_Connects.GetById(id);
-                if (Shop_Connects == null)
+                var existingCategory = await _context.shop_Connects.GetById(id);
+                if (existingCategory == null)
                 {
                     return NotFound();
                 }
-
-                await _context.shop_Connects.Remove(Shop_Connects);
+                await _context.shop_Connects.Remove(existingCategory);
                 _context.save();
-
                 return NoContent();
             }
             catch (Exception ex)
             {
-                return BadRequest();
-
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data: " + ex.Message);
             }
-
         }
+
     }
-
 }
-
-

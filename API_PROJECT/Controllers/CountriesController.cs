@@ -16,10 +16,9 @@ namespace API_PROJECT.Controllers
         {
             _context = context;
         }
-
         // GET: api/Countries
         [HttpGet]
-        public async Task<ActionResult> GetCountries()
+        public async Task<ActionResult<IEnumerable<Countries>>> GetCountries()
         {
             try
             {
@@ -34,11 +33,11 @@ namespace API_PROJECT.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while retrieving the Countries.");
             }
-
-
         }
+
 
         // GET: api/Countries/5
         [HttpGet("{id}")]
@@ -46,10 +45,7 @@ namespace API_PROJECT.Controllers
         {
             try
             {
-                if (_context.countries == null)
-                {
-                    return NotFound();
-                }
+
                 var Countries = await _context.countries.GetById(id);
 
                 if (Countries == null)
@@ -61,7 +57,7 @@ namespace API_PROJECT.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data: " + ex.Message);
             }
 
         }
@@ -69,21 +65,26 @@ namespace API_PROJECT.Controllers
         // PUT: api/Countries/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCountries(int id, Countries Countries)
+        public async Task<IActionResult> PutCountries(int id, [FromBody] Countries updatedCategory)
         {
-            if (id != Countries.id)
+            if (updatedCategory == null)
             {
-                return BadRequest();
+                return BadRequest("Invalid category data.");
+            }
+
+            if (id != updatedCategory.id)
+            {
+                return BadRequest("Category ID mismatch.");
             }
 
             try
             {
-                await _context.countries.Update(Countries);
+                await _context.countries.Update(updatedCategory);
                 _context.save();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data: " + ex.Message);
             }
 
             return NoContent();
@@ -92,54 +93,48 @@ namespace API_PROJECT.Controllers
         // POST: api/Countries
 
         [HttpPost]
-        public async Task<ActionResult<Countries>> PostCountries(Countries Countries)
+        public async Task<ActionResult> PostCategory([FromBody] Countries Countries)
         {
-            if (_context.countries == null)
+            if (Countries == null)
             {
-                return Problem("Entity set 'AppDbContext.Countries'  is null.");
+                return BadRequest("Invalid category data.");
             }
             try
             {
                 await _context.countries.AddNew(Countries);
                 _context.save();
-
                 return CreatedAtAction("GetCountries", new { id = Countries.id }, Countries);
+
+
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error saving data.");
+
             }
 
         }
 
         // DELETE: api/Countries/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCountries(string id)
+        public async Task<ActionResult> DeleteCategory(string id)
         {
-            if (_context.countries == null)
-            {
-                return NotFound();
-            }
             try
             {
-                var Countries = await _context.countries.GetById(id);
-                if (Countries == null)
+                var existingCategory = await _context.countries.GetById(id);
+                if (existingCategory == null)
                 {
                     return NotFound();
                 }
-
-                await _context.countries.Remove(Countries);
+                await _context.countries.Remove(existingCategory);
                 _context.save();
-
                 return NoContent();
             }
             catch (Exception ex)
             {
-                return BadRequest();
-
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data: " + ex.Message);
             }
-
         }
-    }
 
+    }
 }

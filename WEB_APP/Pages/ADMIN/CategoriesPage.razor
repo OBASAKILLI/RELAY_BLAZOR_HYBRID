@@ -1,0 +1,386 @@
+﻿@page "/Categories"
+@using API_PROJECT.Models
+@using Microsoft.EntityFrameworkCore
+@using System.Text.Json
+@inject HttpClient Http
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8">
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">All <span style="color:#B78F2E">  Categoriess</span> </h1>
+        </div>
+        <div class="col-4" style="text-align:end">
+            <MudButton OnClick="Open_Credit_Drawer" Class="text-capitalize" Variant="Variant.Filled" Style="background-color:#B78F2E;margin:6px" StartIcon="@Icons.Material.Rounded.Add" Color="Color.Error">Add new   </MudButton>
+
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div style="text-align:start;margin-top:8px">
+            <div style="font-size:large">
+                All Categoriess
+            </div>
+            <div style="font-size:small;color:gray">
+                List of all  Categoriess in the system
+            </div>
+        </div>
+        <div style="padding:8px;margin:8px">
+            <input @bind="searchString1" @bind:event="oninput" class="form-control border-0" id="myInput" style="background-color:#b2bbc4;color:black;border-radius:30px;font-family:'Century Gothic'" required placeholder="Search" />
+
+        </div>
+        <MudTable Striped=true FixedHeader=true Height="50%" Dense=true Items="@Categoriess_List" Filter="new Func<Categories,bool>(FilterFunc1)">
+            <HeaderContent>
+                <MudTh style="background-color:#072652;color:white">
+                    Name
+                </MudTh>
+
+
+                <MudTh style="background-color:#072652;color:white" colspan="2">Action</MudTh>
+
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Category">
+                    @(context.Category ?? "n/a")
+                </MudTd>
+                <MudTr style="display: flex">
+                    <MudTd>
+                        <MudButton Variant="Variant.Text" Size="Size.Small" OnClick="@(() => Open_Edit_Drawer(context))" StartIcon="@Icons.Material.Filled.Edit" Color="Color.Info" Style="text-transform:none"> Edit</MudButton>
+                    </MudTd>
+                    <MudSpacer />
+                    <MudTd>
+                        <MudButton Variant="Variant.Text" Size="Size.Small" OnClick="@(()=>OnButtonClicked(context))" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Error" Style="text-transform:none"> Remove</MudButton>
+                    </MudTd>
+                </MudTr>
+                @if (deviceCategory == "Mobile")
+                {
+                    <hr />
+                }
+            </RowTemplate>
+            <NoRecordsContent>
+                <div style="text-align:center;color:red">
+                    No Categoriess  were Found...
+                </div>
+            </NoRecordsContent>
+            <PagerContent>
+                <MudTablePager />
+            </PagerContent>
+        </MudTable>
+
+    </div>
+</div>
+
+
+
+<!--Create Drawer-->
+
+
+<div class="container-fluid">
+    <MudDrawer @bind-Open="@open_Create" Style="margin-top:24px" Width="450px" Height="auto" Anchor="Anchor.End" Elevation="1" Variant="@DrawerVariant.Temporary">
+
+        <MudDrawerHeader>
+            <MudCard Elevation="0">
+                <MudCardMedia Image="/Images/Apply.png" Height="100" class="img-fluid" />
+                <MudCardHeader>
+
+
+                    <CardHeaderAvatar>
+                        <MudIcon style="color:#B78F2E" Size="Size.Large" Icon="@Icons.Material.Rounded.Add"></MudIcon>
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h5" style="color:#B78F2E"> Add New  Categories </MudText>
+                        <div style="color:gray;font-size:small"> add new  Categories into the system </div>
+                    </CardHeaderContent>
+                    <CardHeaderActions>
+
+                    </CardHeaderActions>
+                </MudCardHeader>
+            </MudCard>
+        </MudDrawerHeader>
+        <MudDrawerContainer>
+            <div class="container-fluid">
+                <EditForm Model="@Categoriesss" OnValidSubmit="OnValidSubmit">
+                    <DataAnnotationsValidator />
+                    <div hidden>
+                        <MudTextField @bind-Value=" Categoriesss.strId" For="@(()=> Categoriesss.strId)" Margin="Margin.Dense" Label="id" Variant="Variant.Outlined"></MudTextField>
+
+                    </div>
+
+                    <MudTextField @bind-Value=" Categoriesss.Category" For="@(()=> Categoriesss.Category)" Margin="Margin.Dense" Label="Name" Variant="Variant.Outlined"></MudTextField>
+
+                    <br />
+                    <MudTextField @bind-Value=" Categoriesss.strImageUrl" For="@(()=> Categoriesss.strImageUrl)" Margin="Margin.Dense" Label="Image" Variant="Variant.Outlined"></MudTextField>
+
+                    <MudButton ButtonType="ButtonType.Submit" Class="text-capitalize" Variant="Variant.Filled" Style="background-color:#B78F2E;width:100%;margin:6px;margin-Bottom:24px" StartIcon="@Icons.Material.Rounded.Add" Color="Color.Error">Add  Categories </MudButton>
+
+                </EditForm>
+            </div>
+        </MudDrawerContainer>
+    </MudDrawer>
+</div>
+<!--Edit Drawer-->
+
+
+<div class="container-fluid">
+    <MudDrawer @bind-Open="@open_Edit" Style="margin-top:24px" Width="450px" Height="50%" Anchor="Anchor.End" Elevation="1" Variant="@DrawerVariant.Temporary">
+        <MudDrawerHeader>
+            <MudCard Elevation="0">
+                <MudCardHeader>
+                    <CardHeaderAvatar>
+
+                        <MudIcon style="color:#B78F2E" Size="Size.Large" Icon="@Icons.Material.Filled.Edit"></MudIcon>
+
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h5" style="color:#B78F2E"> Edit  Categoriess </MudText>
+                        <div style="color:gray;font-size:small"> Update  Categoriess information </div>
+                    </CardHeaderContent>
+
+                    <CardHeaderActions>
+                        <MudIconButton OnClick="close_Edit_nav" Icon="@Icons.Material.Outlined.Close" aria-label="delete"></MudIconButton>
+
+                    </CardHeaderActions>
+                </MudCardHeader>
+            </MudCard>
+        </MudDrawerHeader>
+        <MudDrawerContainer>
+            <EditForm style="padding:8px" Model="@Edit_Categoriese" OnValidSubmit="OnValidSubmit_Edit_Application">
+                <DataAnnotationsValidator />
+
+                <MudTextField @bind-Value="Edit_Categoriese.Category" For="@(()=>Edit_Categoriese.Category)" Margin="Margin.Dense" Label="Name" Variant="Variant.Outlined"></MudTextField>
+
+                <MudButton ButtonType="ButtonType.Submit" Class="text-capitalize" Variant="Variant.Filled" Style="background-color:#B78F2E;width:80%;margin:6px;margin-Bottom:24px" StartIcon="@Icons.Material.Filled.Save" Color="Color.Error">Save Changes</MudButton>
+
+            </EditForm>
+        </MudDrawerContainer>
+    </MudDrawer>
+</div>
+
+
+
+
+
+
+<MudMessageBox @ref="mbox" Title="Warning!!." CancelText="Cancel">
+
+    <MessageContent>
+        <MudAlert Severity="Severity.Error">
+            You are about to delete this Categories,Are you sure you want to continue?
+        </MudAlert>
+
+    </MessageContent>
+    <YesButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Error" StartIcon="@Icons.Material.Filled.DeleteForever">Delete!</MudButton>
+    </YesButton>
+</MudMessageBox>
+
+@code {
+    [CascadingParameter]
+    public MainLayout Layout { get; set; }
+    // Layout.OpenLoading();
+
+
+    private string searchString1 = "";
+
+    private bool FilterFunc1(Categories element) => FilterFunc(element, searchString1);
+    [CascadingParameter] public string deviceCategory { get; set; }
+    private bool FilterFunc(Categories element, string searchString)
+    {
+        if (string.IsNullOrWhiteSpace(searchString))
+            return true;
+
+        if (element.Category.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        if ($"{element.Category} {element.Category} {element.Category}".Contains(searchString))
+            return true;
+        return false;
+    }
+}
+
+@code {
+    Categories Edit_Categoriese = new Categories();
+    private async Task OnValidSubmit_Edit_Application(EditContext context)
+    {
+        Layout.OpenLoading();
+        try
+        {
+            var response = await Http.PutAsJsonAsync($"{URL.CATEGORY}{Edit_Categoriese.strId}", Edit_Categoriese);
+            if (response.IsSuccessStatusCode)
+            {
+                Snackbar.Add("Category updated successfully!", Severity.Success);
+            }
+            else
+            {
+                Snackbar.Add("Failed to update category.", Severity.Error);
+            }
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error: {ex.Message}", Severity.Error);
+        }
+        await loadData();
+        StateHasChanged();
+        Layout.CloseLoading();
+    }
+}
+
+@code
+{
+    MudMessageBox mbox { get; set; }
+    private async void OnButtonClicked(Categories t)
+    {
+        bool? result = await mbox.Show();
+        if (result != null)
+        {
+            DeleteRecord(t);
+        }
+        StateHasChanged();
+    }
+}
+
+@code {
+    protected async void DeleteRecord(Categories t)
+    {
+        Layout.OpenLoading();
+        try
+        {
+            var response = await Http.DeleteAsync($"{URL.CATEGORY}{t.strId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                Snackbar.Add("Category deleted successfully!", Severity.Success);
+            }
+            else
+            {
+                Snackbar.Add("Failed to delete category.", Severity.Error);
+            }
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error: {ex.Message}", Severity.Error);
+        }
+        await loadData();
+        StateHasChanged();
+        Layout.CloseLoading();
+    }
+}
+
+@code {
+    bool open_Edit;
+    void Open_Edit_Drawer(Categories t)
+    {
+        Edit_Categoriese = t;
+        open_Edit = true;
+    }
+    void close_Edit_nav()
+    {
+        Edit_Categoriese = new Categories();
+        open_Edit = false;
+    }
+
+    bool open_Create;
+    void Open_Credit_Drawer()
+    {
+
+        open_Create = true;
+    }
+    void close_Create_nav()
+    {
+        Categoriesss = new Categories();
+        open_Create = false;
+    }
+
+
+
+    Categories Categoriesss = new Categories();
+    private List<Categories> Categoriess_List = new List<Categories>();
+    private List<Users> usersy_List = new List<Users>();
+    protected override async Task OnInitializedAsync()
+    {
+        Layout.OpenLoading();
+        await loadData();
+        Layout.CloseLoading();
+    }
+
+
+
+    private async Task loadData()
+    {
+        try
+        {
+            var response = await Http.GetAsync(URL.CATEGORY);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+
+                if (!string.IsNullOrWhiteSpace(responseContent))
+                {
+                    try
+                    {
+                        Categoriess_List = JsonSerializer.Deserialize<List<Categories>>(responseContent, new JsonSerializerOptions
+                            {
+                                PropertyNameCaseInsensitive = true
+                            });
+
+
+                        //var serializedJson = JsonSerializer.Serialize(Categoriess_List, new JsonSerializerOptions
+                        //    {
+                        //        WriteIndented = true // Optional, for pretty-printing
+                        //    });
+
+                        //Snackbar.Add($"Raw JSON: {serializedJson}", Severity.Info);
+
+                    }
+                    catch (JsonException jsonEx)
+                    {
+                        Snackbar.Add($"JSON deserialization error: {jsonEx.Message}", Severity.Error);
+                    }
+                }
+                else
+                {
+                    Snackbar.Add("Response content is empty", Severity.Warning);
+                }
+            }
+            else
+            {
+                Snackbar.Add("Something went wrong", Severity.Error);
+            }
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error: {ex.Message}", Severity.Error);
+        }
+    }
+
+
+
+
+
+    private async Task OnValidSubmit(EditContext context)
+    {
+        Layout.OpenLoading();
+        try
+        {
+            // Categoriesss.strId = Guid.NewGuid().ToString();
+            var response = await Http.PostAsJsonAsync(URL.CATEGORY, Categoriesss);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Snackbar.Add("Category added successfully!", Severity.Success);
+                Categoriesss = new Categories();
+            }
+            else
+            {
+                Snackbar.Add("Failed to add category.", Severity.Error);
+            }
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error: {ex.Message}", Severity.Error);
+        }
+        await loadData();
+        Layout.CloseLoading();
+    }
+}
