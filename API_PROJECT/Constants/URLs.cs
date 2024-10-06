@@ -4,6 +4,7 @@
 
     {
         public static string MAIN_URL = "https://localhost:7016/";
+        public  string MAIN = "https://localhost:7016/";
 
         //Ads
         public string ADD_Add = "";

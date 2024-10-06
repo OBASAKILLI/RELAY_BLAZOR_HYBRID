@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using API_PROJECT.Context;
 using API_PROJECT.Interfaces;
 using API_PROJECT.Repositories;
+using API_PROJECT.Constants;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,11 +21,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         new MySqlServerVersion(new Version(10, 4, 24)) // Use the correct MySQL server version
     ));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWorkRepository>();
-
+builder.Services.AddScoped<URLs>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 //
 
 var app = builder.Build();
@@ -34,7 +36,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseStaticFiles();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

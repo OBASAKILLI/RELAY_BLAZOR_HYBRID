@@ -11,7 +11,7 @@ namespace API_PROJECT.Models
         public string strId { get; set; } = Guid.NewGuid().ToString();
         [Required(ErrorMessage = "Required Field")]
         public string Category { get; set; } = string.Empty;
-        [Required(ErrorMessage = "Required Field")]
-        public string strImageUrl { get; set; } = string.Empty;
+       // [Required(ErrorMessage = "Required Field")]
+        public string strImageUrl { get; set; } ="--";
     }
 }

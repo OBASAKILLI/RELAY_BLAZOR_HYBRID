@@ -8,7 +8,14 @@
 
 
 
+<style>
+    .horizontal-container {
+        display: flex;
+       
+        gap: 8px;
+    }
 
+</style>
 <div class="container-fluid">
     <div class="row">
         <div class="col-8">
@@ -34,6 +41,7 @@
         </div>
         <MudTable Striped=true FixedHeader=true Height="50%" Dense=true Items="@Categoriess_List" Filter="new Func<Categories,bool>(FilterFunc1)">
             <HeaderContent>
+
                 <MudTh style="background-color:#072652;color:white">
                     Name
                 </MudTh>
@@ -44,7 +52,14 @@
             </HeaderContent>
             <RowTemplate>
                 <MudTd DataLabel="Category">
-                    @(context.Category ?? "n/a")
+                    <div class="horizontal-container">
+                        <div style="width:100%;">
+                            <div class="horizontal-container">
+                                <MudImage Src="@context.strImageUrl" Height="30" Width="30" Alt="img" Class=" ma-1  " />
+                                <MudText Style="color:black" Typo="Typo.body2">@(context.Category ?? "n/a") </MudText>
+                            </div>
+                        </div>
+                    </div>
                 </MudTd>
                 <MudTr style="display: flex">
                     <MudTd>
@@ -83,7 +98,6 @@
 
         <MudDrawerHeader>
             <MudCard Elevation="0">
-                <MudCardMedia Image="/Images/Apply.png" Height="100" class="img-fluid" />
                 <MudCardHeader>
 
 
@@ -106,14 +120,23 @@
                     <DataAnnotationsValidator />
                     <div hidden>
                         <MudTextField @bind-Value=" Categoriesss.strId" For="@(()=> Categoriesss.strId)" Margin="Margin.Dense" Label="id" Variant="Variant.Outlined"></MudTextField>
+                        <MudTextField @bind-Value=" Categoriesss.strImageUrl" For="@(()=> Categoriesss.strImageUrl)" Margin="Margin.Dense" Label="strImageUrl" Variant="Variant.Outlined"></MudTextField>
 
                     </div>
 
                     <MudTextField @bind-Value=" Categoriesss.Category" For="@(()=> Categoriesss.Category)" Margin="Margin.Dense" Label="Name" Variant="Variant.Outlined"></MudTextField>
                     <br />
-                    <InputFile OnChange="HandleSelectedImage" />
-                    <br />
-                    <MudTextField @bind-Value=" Categoriesss.strImageUrl" For="@(()=> Categoriesss.strImageUrl)" Margin="Margin.Dense" Label="Image" Variant="Variant.Outlined"></MudTextField>
+                    <div class="row">
+                        <div class="col-10">
+                            <InputFile class="form-control"  OnChange="HandleSelectedImage" />
+                        </div>
+                        <div class="col-2">
+                            @if (imagePreviewUrl != null)
+                            {
+                                <MudImage Src="@imagePreviewUrl" Height="40" Width="40" Alt="kili" Class="rounded-lg ma-1  " />
+                            }
+                        </div>
+                    </div> <br />
 
                     <MudButton ButtonType="ButtonType.Submit" Class="text-capitalize" Variant="Variant.Filled" Style="background-color:#B78F2E;width:100%;margin:6px;margin-Bottom:24px" StartIcon="@Icons.Material.Rounded.Add" Color="Color.Error">Add  Categories </MudButton>
 
@@ -357,13 +380,47 @@
         }
     }
 
- private IBrowserFile imageFile;
-
+    private string imagePreviewUrl;
+    private IBrowserFile imageFile;
+    private ElementReference fileInput;
     private async Task HandleSelectedImage(InputFileChangeEventArgs e)
     {
-        imageFile = e.File;
+        const long maxAllowedSize = 1024 * 1024 * 10; // 10 MB
+        var selectedFile = e.File;
+
+        if (selectedFile.Size > maxAllowedSize)
+        {
+            Snackbar.Add("File size exceeds the maximum allowed size of 10 MB.", Severity.Error);
+            return;
+        }
+
+        imageFile = selectedFile;
+
+        try
+        {
+            using var stream = imageFile.OpenReadStream(maxAllowedSize: maxAllowedSize);
+            var buffer = new byte[selectedFile.Size];
+            await stream.ReadAsync(buffer, 0, (int)selectedFile.Size);
+
+            // Create the base64 URL for image preview
+            imagePreviewUrl = $"data:{imageFile.ContentType};base64,{Convert.ToBase64String(buffer)}";
+
+            // Trigger the UI to update
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error reading file: {ex.Message}", Severity.Error);
+        }
     }
-    
+
+    private void ClearFileInput()
+    {
+        imageFile = null; // Clear the selected image file
+                          // Reset the input element (requires @ref)
+       // fileInput.Value = string.Empty;
+    }
+
 
 
 
@@ -374,30 +431,24 @@
         {
             var content = new MultipartFormDataContent();
             var stream = imageFile.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024); // 10 MB limit
-           
-              
+
             var imageContent = new StreamContent(stream);
-                imageContent.Headers.ContentType = new MediaTypeHeaderValue(imageFile.ContentType);
-                content.Add(imageContent, "imageFile", imageFile.Name);
-            
-            content.Add(new StringContent(Categoriesss.Category), "category");  // Adding the "Category" field
-            
-
-        //    var jsonCategory = JsonSerializer.Serialize(Categoriesss);        
-        //content.Add(new StringContent(jsonCategory, Encoding.UTF8, "application/json"), "category");
+            imageContent.Headers.ContentType = new MediaTypeHeaderValue(imageFile.ContentType);
+            content.Add(imageContent, "imageFile", imageFile.Name); var jsonCategory = JsonSerializer.Serialize(Categoriesss);
+            content.Add(new StringContent(jsonCategory, Encoding.UTF8, "application/json"), "category");
 
 
-            var response = await Http.PostAsync("https://localhost:7016/api/Categories/create", content);
+            var response = await Http.PostAsync("https://localhost:7016/api/Categories/", content);
             if (response.IsSuccessStatusCode)
             {
-               
-                 Snackbar.Add("File uploaded and category saved successfully!", Severity.Success);
+                ClearFileInput();
+                Categoriesss = new Categories();
+                Snackbar.Add("File uploaded and category saved successfully!", Severity.Success);
             }
             else
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
                 Snackbar.Add($"Error: {responseContent}", Severity.Error);
-               // Snackbar.Add("File Upload Failed", Severity.Warning);
             }
         }
         else
@@ -405,7 +456,6 @@
             Snackbar.Add("Please select a file and enter a category.", Severity.Warning);
         }
 
-           
         await loadData();
         Layout.CloseLoading();
     }

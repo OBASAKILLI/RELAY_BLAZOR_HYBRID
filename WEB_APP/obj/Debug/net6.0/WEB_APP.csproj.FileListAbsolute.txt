@@ -1,5 +1,6 @@
 D:\PROJECTS\Relay_Blazor_Hybrid\WEB_APP\bin\Debug\net6.0\API_PROJECT.deps.json
 D:\PROJECTS\Relay_Blazor_Hybrid\WEB_APP\bin\Debug\net6.0\API_PROJECT.runtimeconfig.json
+D:\PROJECTS\Relay_Blazor_Hybrid\WEB_APP\bin\Debug\net6.0\API_PROJECT.staticwebassets.runtime.json
 D:\PROJECTS\Relay_Blazor_Hybrid\WEB_APP\bin\Debug\net6.0\API_PROJECT.exe
 D:\PROJECTS\Relay_Blazor_Hybrid\WEB_APP\bin\Debug\net6.0\appsettings.Development.json
 D:\PROJECTS\Relay_Blazor_Hybrid\WEB_APP\bin\Debug\net6.0\appsettings.json
@@ -264,4 +265,3 @@ D:\PROJECTS\Relay_Blazor_Hybrid\WEB_APP\obj\Debug\net6.0\refint\WEB_APP.dll
 D:\PROJECTS\Relay_Blazor_Hybrid\WEB_APP\obj\Debug\net6.0\WEB_APP.pdb
 D:\PROJECTS\Relay_Blazor_Hybrid\WEB_APP\obj\Debug\net6.0\WEB_APP.genruntimeconfig.cache
 D:\PROJECTS\Relay_Blazor_Hybrid\WEB_APP\obj\Debug\net6.0\ref\WEB_APP.dll
-D:\PROJECTS\Relay_Blazor_Hybrid\WEB_APP\bin\Debug\net6.0\API_PROJECT.staticwebassets.runtime.json

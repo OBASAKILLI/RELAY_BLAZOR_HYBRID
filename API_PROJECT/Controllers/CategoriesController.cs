@@ -1,8 +1,10 @@
-﻿using API_PROJECT.Context;
+﻿using API_PROJECT.Constants;
+using API_PROJECT.Context;
 using API_PROJECT.Interfaces;
 using API_PROJECT.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace API_PROJECT.Controllers
 {
@@ -11,12 +13,14 @@ namespace API_PROJECT.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly IUnitOfWork _context;
-        private readonly IWebHostEnvironment _environment;
+        private readonly URLs _uRLs;
 
-        public CategoriesController(IUnitOfWork context, IWebHostEnvironment environment)
+        public CategoriesController(IUnitOfWork context,URLs uRLs)
         {
             _context = context;
-            _environment = environment;
+            _uRLs = uRLs;
+
+
         }
 
         // GET: api/Categories
@@ -48,7 +52,7 @@ namespace API_PROJECT.Controllers
         {
             try
             {
-               
+
                 var Categories = await _context.categories.GetById(id);
 
                 if (Categories == null)
@@ -95,40 +99,41 @@ namespace API_PROJECT.Controllers
 
         // POST: api/Categories
 
-        [HttpPost("create")]
-        public async Task<IActionResult> CreateCategory([FromForm] string category, IFormFile imageFile)
+        [HttpPost]
+        public async Task<IActionResult> CreateCategory([FromForm] string category, [FromForm] IFormFile imageFile)
         {
             if (imageFile == null || imageFile.Length == 0)
             {
                 return BadRequest("No file was uploaded.");
             }
-
-
-            // Ensure the file is an image
-            var validExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
-            var extension = Path.GetExtension(imageFile.FileName).ToLower();
-
-            if (!validExtensions.Contains(extension))
+            var categories = JsonSerializer.Deserialize<Categories>(category);
+            if (categories == null)
             {
-                return BadRequest("Invalid file type. Only image files are allowed.");
+                return BadRequest("Invalid JSON data.");
             }
-
-            var uploadPath = Path.Combine(_environment.WebRootPath, "images");
-
-            // Ensure the directory exists
-            if (!Directory.Exists(uploadPath))
+            else
             {
-                Directory.CreateDirectory(uploadPath);
-            }
-            var filePath = Path.Combine(uploadPath, Guid.NewGuid().ToString() + extension);
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/");
+                var fileExtension = Path.GetExtension(imageFile.FileName);
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-            // Save the file to the server
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await imageFile.CopyToAsync(stream);
-            }
-            return Ok(new { Message = "File uploaded and category saved successfully", FilePath = filePath });
+                // Create directory if it doesn't exist
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
 
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await imageFile.CopyToAsync(fileStream);
+                }
+                categories.strImageUrl = $"{_uRLs.MAIN}images/{uniqueFileName}";
+                await _context.categories.AddNew(categories);
+                _context.save();
+
+                return Ok(new { Message = "File uploaded and category saved successfully", FilePath = filePath });
+            }
         }
 
 
@@ -153,7 +158,7 @@ namespace API_PROJECT.Controllers
             }
         }
 
-      
+
 
         // Method to save the uploaded image file to a directory
         private async Task<string> SaveImage(IFormFile imageFile)

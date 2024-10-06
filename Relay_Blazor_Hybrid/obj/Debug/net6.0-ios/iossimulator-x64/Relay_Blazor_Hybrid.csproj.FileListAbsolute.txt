@@ -287,3 +287,4 @@ D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\obj\Debug\net6.0-ios\iossimu
 D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\obj\Debug\net6.0-ios\iossimulator-x64\Relay_Blazor_Hybrid.pdb
 D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\obj\Debug\net6.0-ios\iossimulator-x64\Relay_Blazor_Hybrid.genruntimeconfig.cache
 D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\obj\Debug\net6.0-ios\iossimulator-x64\ref\Relay_Blazor_Hybrid.dll
+D:\PROJECTS\Relay_Blazor_Hybrid\Relay_Blazor_Hybrid\obj\Debug\net6.0-ios\iossimulator-x64\build-signature\signature
