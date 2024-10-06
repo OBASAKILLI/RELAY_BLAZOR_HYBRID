@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZKuBODOP+7RN/KRkkbE++f0ZfggJyQmUIwPGItTptow=",
+  "Hash": "4/wcvW9KMMigy1KYNeiJk+pUorEe9OPsg5db/k2jh1w=",
   "Source": "WEB_APP",
   "BasePath": "_content/WEB_APP",
   "Mode": "Default",
@@ -19,6 +19,13 @@
     }
   ],
   "DiscoveryPatterns": [
+    {
+      "Name": "API_PROJECT\\wwwroot",
+      "Source": "API_PROJECT",
+      "ContentRoot": "D:\\PROJECTS\\Relay_Blazor_Hybrid\\API_PROJECT\\wwwroot\\",
+      "BasePath": "_content/API_PROJECT",
+      "Pattern": "**"
+    },
     {
       "Name": "WEB_APP\\wwwroot",
       "Source": "WEB_APP",
@@ -61,6 +68,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Developer Kili\\.nuget\\packages\\mudblazor\\6.19.1\\staticwebassets\\MudBlazor.min.js"
+    },
+    {
+      "Identity": "D:\\PROJECTS\\Relay_Blazor_Hybrid\\API_PROJECT\\wwwroot\\images\\d19717ce-911e-4106-af31-7fe79bef8d29.jpg",
+      "SourceId": "API_PROJECT",
+      "SourceType": "Project",
+      "ContentRoot": "D:\\PROJECTS\\Relay_Blazor_Hybrid\\API_PROJECT\\wwwroot\\",
+      "BasePath": "_content/API_PROJECT",
+      "RelativePath": "images/d19717ce-911e-4106-af31-7fe79bef8d29.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\d19717ce-911e-4106-af31-7fe79bef8d29.jpg"
     },
     {
       "Identity": "D:\\PROJECTS\\Relay_Blazor_Hybrid\\WEB_APP\\obj\\Debug\\net6.0\\scopedcss\\bundle\\WEB_APP.styles.css",

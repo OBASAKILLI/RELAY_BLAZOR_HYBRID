@@ -1,4 +1,5 @@
-﻿using API_PROJECT.Interfaces;
+﻿using API_PROJECT.Context;
+using API_PROJECT.Interfaces;
 using API_PROJECT.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +11,12 @@ namespace API_PROJECT.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly IUnitOfWork _context;
+        private readonly IWebHostEnvironment _environment;
 
-        public CategoriesController(IUnitOfWork context)
+        public CategoriesController(IUnitOfWork context, IWebHostEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
 
         // GET: api/Categories
@@ -92,28 +95,42 @@ namespace API_PROJECT.Controllers
 
         // POST: api/Categories
 
-        [HttpPost]
-        public async Task<ActionResult> PostCategory([FromBody] Categories Categories)
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateCategory([FromForm] string category, IFormFile imageFile)
         {
-            if (Categories == null)
+            if (imageFile == null || imageFile.Length == 0)
             {
-                return BadRequest("Invalid category data.");
+                return BadRequest("No file was uploaded.");
             }
-            try
-            {
-            await _context.categories.AddNew(Categories);
-            _context.save();
-            return CreatedAtAction("GetCategories", new { id = Categories.strId }, Categories);
 
 
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error saving data.");
+            // Ensure the file is an image
+            var validExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+            var extension = Path.GetExtension(imageFile.FileName).ToLower();
 
+            if (!validExtensions.Contains(extension))
+            {
+                return BadRequest("Invalid file type. Only image files are allowed.");
             }
+
+            var uploadPath = Path.Combine(_environment.WebRootPath, "images");
+
+            // Ensure the directory exists
+            if (!Directory.Exists(uploadPath))
+            {
+                Directory.CreateDirectory(uploadPath);
+            }
+            var filePath = Path.Combine(uploadPath, Guid.NewGuid().ToString() + extension);
+
+            // Save the file to the server
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(stream);
+            }
+            return Ok(new { Message = "File uploaded and category saved successfully", FilePath = filePath });
 
         }
+
 
         // DELETE: api/Categories/5
         [HttpDelete("{id}")]
@@ -135,6 +152,32 @@ namespace API_PROJECT.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data: " + ex.Message);
             }
         }
+
+      
+
+        // Method to save the uploaded image file to a directory
+        private async Task<string> SaveImage(IFormFile imageFile)
+        {
+            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+            var uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
+            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            // Create directory if it doesn't exist
+            if (!Directory.Exists(uploadsFolder))
+            {
+                Directory.CreateDirectory(uploadsFolder);
+            }
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(fileStream);
+            }
+
+            // Return the relative path to store in the database (you can use absolute path if preferred)
+            return $"/images/{uniqueFileName}";
+        }
+
+
     }
 
 }

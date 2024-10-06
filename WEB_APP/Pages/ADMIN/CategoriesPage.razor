@@ -2,6 +2,8 @@
 @using API_PROJECT.Models
 @using Microsoft.EntityFrameworkCore
 @using System.Text.Json
+@using System.Net.Http.Headers
+@using System.Text
 @inject HttpClient Http
 
 
@@ -108,7 +110,8 @@
                     </div>
 
                     <MudTextField @bind-Value=" Categoriesss.Category" For="@(()=> Categoriesss.Category)" Margin="Margin.Dense" Label="Name" Variant="Variant.Outlined"></MudTextField>
-
+                    <br />
+                    <InputFile OnChange="HandleSelectedImage" />
                     <br />
                     <MudTextField @bind-Value=" Categoriesss.strImageUrl" For="@(()=> Categoriesss.strImageUrl)" Margin="Margin.Dense" Label="Image" Variant="Variant.Outlined"></MudTextField>
 
@@ -354,32 +357,55 @@
         }
     }
 
+ private IBrowserFile imageFile;
 
+    private async Task HandleSelectedImage(InputFileChangeEventArgs e)
+    {
+        imageFile = e.File;
+    }
+    
 
 
 
     private async Task OnValidSubmit(EditContext context)
     {
         Layout.OpenLoading();
-        try
+        if (imageFile != null && !string.IsNullOrEmpty(Categoriesss.Category))
         {
-            // Categoriesss.strId = Guid.NewGuid().ToString();
-            var response = await Http.PostAsJsonAsync(URL.CATEGORY, Categoriesss);
+            var content = new MultipartFormDataContent();
+            var stream = imageFile.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024); // 10 MB limit
+           
+              
+            var imageContent = new StreamContent(stream);
+                imageContent.Headers.ContentType = new MediaTypeHeaderValue(imageFile.ContentType);
+                content.Add(imageContent, "imageFile", imageFile.Name);
+            
+            content.Add(new StringContent(Categoriesss.Category), "category");  // Adding the "Category" field
+            
 
+        //    var jsonCategory = JsonSerializer.Serialize(Categoriesss);        
+        //content.Add(new StringContent(jsonCategory, Encoding.UTF8, "application/json"), "category");
+
+
+            var response = await Http.PostAsync("https://localhost:7016/api/Categories/create", content);
             if (response.IsSuccessStatusCode)
             {
-                Snackbar.Add("Category added successfully!", Severity.Success);
-                Categoriesss = new Categories();
+               
+                 Snackbar.Add("File uploaded and category saved successfully!", Severity.Success);
             }
             else
             {
-                Snackbar.Add("Failed to add category.", Severity.Error);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                Snackbar.Add($"Error: {responseContent}", Severity.Error);
+               // Snackbar.Add("File Upload Failed", Severity.Warning);
             }
         }
-        catch (Exception ex)
+        else
         {
-            Snackbar.Add($"Error: {ex.Message}", Severity.Error);
+            Snackbar.Add("Please select a file and enter a category.", Severity.Warning);
         }
+
+           
         await loadData();
         Layout.CloseLoading();
     }

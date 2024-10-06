@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "L9u70JJZDufS3Z2KllyuqW2XlSi4i4NG41EiDMDTTUM=",
+  "Hash": "4jri+cD2XpEnAmPQFIIKn9vfB/gPX+xd7gLEEO8tQxM=",
   "Source": "API_PROJECT",
   "BasePath": "_content/API_PROJECT",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "API_PROJECT\\wwwroot",
+      "Source": "API_PROJECT",
+      "ContentRoot": "D:\\PROJECTS\\Relay_Blazor_Hybrid\\API_PROJECT\\wwwroot\\",
+      "BasePath": "_content/API_PROJECT",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\PROJECTS\\Relay_Blazor_Hybrid\\API_PROJECT\\wwwroot\\images\\d19717ce-911e-4106-af31-7fe79bef8d29.jpg",
+      "SourceId": "API_PROJECT",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PROJECTS\\Relay_Blazor_Hybrid\\API_PROJECT\\wwwroot\\",
+      "BasePath": "_content/API_PROJECT",
+      "RelativePath": "images/d19717ce-911e-4106-af31-7fe79bef8d29.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\d19717ce-911e-4106-af31-7fe79bef8d29.jpg"
+    }
+  ]
 }
